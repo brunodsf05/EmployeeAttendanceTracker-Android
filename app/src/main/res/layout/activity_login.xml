@@ -23,7 +23,7 @@
             android:id="@+id/textTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar sesión"
+            android:text="@string/tit_login"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="44sp"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autoSizeTextType="none"
-            android:text="Introduzca sus credenciales"
+            android:text="@string/sub_login"
             android:textAlignment="center"
             android:textSize="14sp" />
     </LinearLayout>
@@ -63,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/hnt_user"
             android:inputType="textEmailAddress" />
 
         <TextView
@@ -77,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/hnt_password"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -85,7 +87,7 @@
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:text="@string/btn_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,12 +95,12 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="Recuérdame"
+        android:text="@string/btn_remember"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
