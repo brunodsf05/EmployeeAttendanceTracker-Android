@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/mnu_history"
+        android:icon="@drawable/ic_history"
+        app:iconTint="?attr/colorOnSurface"
+        android:title="@string/mnu_history"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/mnu_config"
+        android:icon="@drawable/ic_settings"
+        app:iconTint="?attr/colorOnSurface"
+        android:title="@string/mnu_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/mnu_logout"
+        android:icon="@drawable/ic_logout"
+        app:iconTint="?attr/colorOnSurface"
+        android:title="@string/mnu_logout"
+        app:showAsAction="never" />
+</menu>
