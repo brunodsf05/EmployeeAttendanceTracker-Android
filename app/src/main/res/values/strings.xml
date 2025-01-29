@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">ControlDePresencia2025-Android</string>
+    <!-- Aplicación -->
+    <string name="app_name">Control De Presencia 2025</string>
+
+    <!-- Activity: Fichajes -->
+    <string name="bar_title">Fichar</string>
+    <string name="mnu_history">Ver mis entradas y salidas</string>
+    <string name="mnu_settings">Configuración de usuario</string>
+    <string name="mnu_logout">Cerrar sesión</string>
+    <string name="btn_clock_in">Entrar</string>
+    <string name="btn_clock_out">Salir</string>
 </resources>
