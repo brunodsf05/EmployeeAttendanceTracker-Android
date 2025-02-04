@@ -1,9 +1,14 @@
 package bdisfer1410.controldepresencia;
 
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -25,13 +31,18 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        //
+        // Vincular vistas a variables
         Toolbar toolbar = findViewById(R.id.toolbar);
-        Button buttonFichar = findViewById(R.id.btnClock);
+        Button buttonClock = findViewById(R.id.btnClock);
 
         // Configurar la toolbar
         toolbar.setTitle(R.string.bar_title);
         setSupportActionBar(toolbar);
+
+        // Configurar acciones
+        buttonClock.setOnClickListener(v -> {
+            Log.d("CLICK", "Fichar");
+        });
     }
 
     @SuppressLint("RestrictedApi")
@@ -47,5 +58,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Obtener el ID del elemento seleccionado
+        int id = item.getItemId();
+
+        if (id == R.id.mnu_history) {
+            Log.d("CLICK", "Historial");
+        }
+        else if (id == R.id.mnu_config) {
+            Log.d("CLICK", "Configuración");
+        }
+        else if (id == R.id.mnu_logout) {
+            Log.d("CLICK", "Cerrar sesión");
+        }
+        else {
+            Log.e("CLICK", "MenuItem sin implementar");
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
