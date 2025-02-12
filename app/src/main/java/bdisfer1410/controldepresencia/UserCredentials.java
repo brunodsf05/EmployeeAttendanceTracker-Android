@@ -26,10 +26,10 @@ public class UserCredentials {
     }
 
     public boolean isNameValid() {
-        return !name.isBlank();
+        return name != null && !name.isBlank();
     }
 
     public boolean isPasswordValid() {
-        return !password.isBlank();
+        return password != null && !password.isBlank();
     }
 }
