@@ -47,8 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-
+    /**
+     * Intenta pasar al {@link MainActivity} mediante un inicio de sesión con {@code credentials}.
+     */
     private void attemptLogIn() {
         boolean isCredentialsValid = validateCredentials();
 
@@ -60,15 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
-
+    /**
+     * Reemplaza el valor de {@code credentials} con uno cuyos valores fueron sacados del formulario.
+     */
     private void loadCredentialsFromFormulary() {
         String name = inputUser.getText().toString();
         String password = inputPassword.getText().toString();
 
         credentials = new UserCredentials(name, password);
     }
-
 
     /**
      * Verifica que los valores de las credenciales sean válidos.
