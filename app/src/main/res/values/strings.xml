@@ -15,8 +15,10 @@
     <string name="sub_login">Introduzca sus credenciales</string>
     <string name="lbl_user">Usuario</string>
     <string name="hnt_user">Escriba su usuario</string>
+    <string name="err_user">Debes escribir un nombre de usuario</string>
     <string name="lbl_password">Contraseña</string>
     <string name="hnt_password">Escriba su contraseña</string>
+    <string name="err_password">Debes escribir una contraseña</string>
     <string name="btn_login">Entrar</string>
     <string name="btn_remember">Recordar credenciales del usuario</string>
 </resources>
