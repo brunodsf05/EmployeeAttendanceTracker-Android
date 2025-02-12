@@ -23,5 +23,6 @@
     <!-- Activity: Inicio de sesión: Errores -->
     <string name="login_error_user">Debes escribir un nombre de usuario</string>
     <string name="login_error_password">Debes escribir una contraseña</string>
-    <string name="login_error_credentials">Las credenciales no son válidas</string>
+    <string name="login_error_input_credentials">Las credenciales no son válidas</string>
+    <string name="login_error_load_credentials">No se pudieron cargar las credenciales</string>
 </resources>

@@ -1,5 +1,7 @@
 package bdisfer1410.controldepresencia;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -17,6 +19,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputUser, inputPassword;
     private TextView outputError;
     private CheckBox checkboxRemember;
+
+    // Estado
+    private SharedPreferences sharedPreferences;
 
     // Datos
     private UserCredentials credentials;
@@ -43,8 +48,23 @@ public class LoginActivity extends AppCompatActivity {
         // Configurar acciones
         findViewById(R.id.buttonLogin).setOnClickListener(v -> {
             loadCredentialsFromFormulary();
+
+            if (checkboxRemember.isChecked()) {
+                saveCredentials();
+            }
+
             attemptLogIn();
         });
+
+        // Cargar datos
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+        boolean autoLogin = sharedPreferences.getBoolean("remember", false);
+
+        if (autoLogin) {
+            checkboxRemember.setChecked(true);
+            loadCredentialsFromStorage();
+            attemptLogIn();
+        }
     }
 
     /**
@@ -57,8 +77,11 @@ public class LoginActivity extends AppCompatActivity {
             outputError.setText("");
         }
         else {
-            outputError.setText(R.string.login_error_credentials);
+            outputError.setText(R.string.login_error_input_credentials);
+            return;
         }
+
+        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -67,6 +90,24 @@ public class LoginActivity extends AppCompatActivity {
     private void loadCredentialsFromFormulary() {
         String name = inputUser.getText().toString();
         String password = inputPassword.getText().toString();
+
+        credentials = new UserCredentials(name, password);
+    }
+
+    /**
+     * Carga los {@code credentials} guardados localmente.
+     */
+    private void loadCredentialsFromStorage() {
+        String name = sharedPreferences.getString("name", null);
+        String password = sharedPreferences.getString("password", null);
+
+        if (name == null || password == null) {
+            outputError.setText(R.string.login_error_load_credentials);
+            return;
+        }
+
+        inputUser.setText(name);
+        inputPassword.setText(password);
 
         credentials = new UserCredentials(name, password);
     }
@@ -91,5 +132,18 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    /**
+     * Guarda las {@code credentials} actuales en el almacenamiento.
+     */
+    private void saveCredentials() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean("remember", true);
+        editor.putString("name", credentials.getName());
+        editor.putString("password", credentials.getPassword());
+
+        editor.apply();
     }
 }
