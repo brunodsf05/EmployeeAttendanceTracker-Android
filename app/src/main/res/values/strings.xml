@@ -3,22 +3,22 @@
     <string name="app_name">Control De Presencia 2025</string>
 
     <!-- Activity: Fichajes: Views -->
-    <string name="bar_title">Fichar</string>
-    <string name="mnu_history">Ver mis entradas y salidas</string>
-    <string name="mnu_settings">Configuración de usuario</string>
-    <string name="mnu_logout">Cerrar sesión</string>
-    <string name="btn_clock_in">Entrar</string>
-    <string name="btn_clock_out">Salir</string>
+    <string name="main_title">Fichar</string>
+    <string name="main_mnu_history">Ver mis entradas y salidas</string>
+    <string name="main_mnu_settings">Configuración de usuario</string>
+    <string name="main_mnu_logout">Cerrar sesión</string>
+    <string name="main_btn_clock_in">Entrar</string>
+    <string name="main_btn_clock_out">Salir</string>
 
     <!-- Activity: Inicio de sesión: Views -->
-    <string name="tit_login">Iniciar sesión</string>
-    <string name="sub_login">Introduzca sus credenciales</string>
-    <string name="lbl_user">Usuario</string>
-    <string name="hnt_user">Escriba su usuario</string>
-    <string name="lbl_password">Contraseña</string>
-    <string name="hnt_password">Escriba su contraseña</string>
-    <string name="btn_login">Entrar</string>
-    <string name="btn_remember">Recordar credenciales del usuario</string>
+    <string name="login_title">Iniciar sesión</string>
+    <string name="login_subtitle">Introduzca sus credenciales</string>
+    <string name="login_lbl_user">Usuario</string>
+    <string name="login_hnt_user">Escriba su usuario</string>
+    <string name="login_lbl_password">Contraseña</string>
+    <string name="login_hnt_password">Escriba su contraseña</string>
+    <string name="login_btn_login">Entrar</string>
+    <string name="login_btn_remember">Recordar credenciales del usuario</string>
 
     <!-- Activity: Inicio de sesión: Errores -->
     <string name="login_error_user">Debes escribir un nombre de usuario</string>

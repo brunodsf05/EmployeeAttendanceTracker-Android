@@ -25,7 +25,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:text="@string/btn_clock_in"
+        android:text="@string/main_btn_clock_in"
         android:textAllCaps="true"
         android:textSize="48sp"
         android:textStyle="bold"

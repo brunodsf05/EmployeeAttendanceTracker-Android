@@ -3,12 +3,10 @@ package bdisfer1410.controldepresencia;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonClock = findViewById(R.id.btnClock);
 
         // Configurar la toolbar
-        toolbar.setTitle(R.string.bar_title);
+        toolbar.setTitle(R.string.main_title);
         setSupportActionBar(toolbar);
 
         // Configurar acciones
