@@ -56,12 +56,12 @@
             android:id="@+id/textUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Usuario" />
+            android:text="@string/lbl_user" />
 
         <EditText
             android:id="@+id/inputUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:hint="@string/hnt_user"
             android:inputType="textEmailAddress" />
@@ -71,12 +71,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="Contraseña" />
+            android:text="@string/lbl_password" />
 
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:hint="@string/hnt_password"
             android:inputType="textPassword" />

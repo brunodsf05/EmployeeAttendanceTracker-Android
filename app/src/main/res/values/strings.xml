@@ -10,7 +10,7 @@
     <string name="btn_clock_in">Entrar</string>
     <string name="btn_clock_out">Salir</string>
 
-    <!-- Activity: Fichajes -->
+    <!-- Activity: Inicio de sesión -->
     <string name="tit_login">Iniciar sesión</string>
     <string name="sub_login">Introduzca sus credenciales</string>
     <string name="lbl_user">Usuario</string>
