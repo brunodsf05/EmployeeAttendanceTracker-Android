@@ -37,7 +37,7 @@
             android:autoSizeTextType="none"
             android:text="@string/sub_login"
             android:textAlignment="center"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,36 +50,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="400dp">
 
         <TextView
             android:id="@+id/textUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_user" />
+            android:text="@string/lbl_user"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/inputUser"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/hnt_user"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="@string/lbl_password" />
+            android:text="@string/lbl_password"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/hnt_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
@@ -88,6 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_login"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +109,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:text="@string/btn_remember"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
