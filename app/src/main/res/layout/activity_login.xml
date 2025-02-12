@@ -23,7 +23,7 @@
             android:id="@+id/textTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tit_login"
+            android:text="@string/login_title"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="44sp"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autoSizeTextType="none"
-            android:text="@string/sub_login"
+            android:text="@string/login_subtitle"
             android:textAlignment="center"
             android:textSize="16sp" />
     </LinearLayout>
@@ -57,7 +57,7 @@
             android:id="@+id/textUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_user"
+            android:text="@string/login_lbl_user"
             android:textStyle="bold" />
 
         <EditText
@@ -66,7 +66,7 @@
             android:layout_height="48dp"
             android:autofillHints=""
             android:ems="10"
-            android:hint="@string/hnt_user"
+            android:hint="@string/login_hnt_user"
             android:inputType="textEmailAddress"
             tools:ignore="TextContrastCheck" />
 
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="@string/lbl_password"
+            android:text="@string/login_lbl_password"
             android:textStyle="bold" />
 
         <EditText
@@ -84,7 +84,7 @@
             android:layout_height="48dp"
             android:autofillHints=""
             android:ems="10"
-            android:hint="@string/hnt_password"
+            android:hint="@string/login_hnt_password"
             android:inputType="textPassword"
             tools:ignore="TextContrastCheck" />
 
@@ -94,7 +94,7 @@
         android:id="@+id/buttonLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/btn_login"
+        android:text="@string/login_btn_login"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -108,7 +108,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/btn_remember"
+        android:text="@string/login_btn_remember"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
