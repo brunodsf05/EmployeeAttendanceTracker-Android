@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia;
+package bdisfer1410.controldepresencia.clockin;
 
 
 import android.annotation.SuppressLint;
@@ -15,6 +15,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import bdisfer1410.controldepresencia.R;
 
 
 public class MainActivity extends AppCompatActivity {
