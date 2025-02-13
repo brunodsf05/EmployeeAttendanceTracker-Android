@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia;
+package bdisfer1410.controldepresencia.login;
 
 public class UserCredentials {
     private String name;
