@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.clockin.MainActivity;
+import bdisfer1410.controldepresencia.login.api.AuthRequest;
 
 public class LoginActivity extends AppCompatActivity {
     // Views
