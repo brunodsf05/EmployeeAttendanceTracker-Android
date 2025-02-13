@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia.login;
+package bdisfer1410.controldepresencia.login.api;
 
 public class AuthRequest {
     private String user;
