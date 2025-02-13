@@ -15,8 +15,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
+import bdisfer1410.controldepresencia.RetrofitClient;
 import bdisfer1410.controldepresencia.clockin.MainActivity;
 import bdisfer1410.controldepresencia.login.api.AuthRequest;
+import bdisfer1410.controldepresencia.login.api.AuthResponse;
+import bdisfer1410.controldepresencia.login.api.AuthService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     // Views
@@ -26,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Estado
     private SharedPreferences sharedPreferences;
+    private AuthService authService;
 
     // Datos
     private AuthRequest credentials;
@@ -50,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
+        authService = RetrofitClient.getInstance().create(AuthService.class);
+
         findViewById(R.id.buttonLogin).setOnClickListener(v -> {
             loadCredentialsFromFormulary();
 
@@ -77,15 +86,36 @@ public class LoginActivity extends AppCompatActivity {
     private void attemptLogIn() {
         boolean isCredentialsValid = validateCredentials();
 
-        if (isCredentialsValid) {
-            outputError.setText("");
-        }
-        else {
+        if (!isCredentialsValid) {
             outputError.setText(R.string.login_error_input_credentials);
             return;
         }
 
-        Toast.makeText(this, "Iniciando sesión...", Toast.LENGTH_SHORT).show();
+        outputError.setText("");
+
+        authService.login(credentials).enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
+
+                if (!isResponseSuccessful) {
+                    outputError.setText("ResponseNotSuccesfull"); // TODO: CHANGE
+                    return;
+                }
+
+                AuthResponse auth = response.body();
+                // TODO: TEMPORAL
+                String a = String.valueOf(auth.isSuccess());
+                a += " ";
+                a += auth.isSuccess() ? auth.getToken() : auth.getMessage();
+                outputError.setText(a);
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                outputError.setText("ERRORFAILURE");
+            }
+        });
     }
 
     /**
