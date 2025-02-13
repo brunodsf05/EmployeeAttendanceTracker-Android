@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     // Datos
-    private UserCredentials credentials;
+    private AuthRequest credentials;
 
 
 
@@ -94,14 +94,14 @@ public class LoginActivity extends AppCompatActivity {
         String name = inputUser.getText().toString();
         String password = inputPassword.getText().toString();
 
-        credentials = new UserCredentials(name, password);
+        credentials = new AuthRequest(name, password);
     }
 
     /**
      * Carga los {@code credentials} guardados localmente.
      */
     private void loadCredentialsFromStorage() {
-        String name = sharedPreferences.getString("name", null);
+        String name = sharedPreferences.getString("user", null);
         String password = sharedPreferences.getString("password", null);
 
         if (name == null || password == null) {
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         inputUser.setText(name);
         inputPassword.setText(password);
 
-        credentials = new UserCredentials(name, password);
+        credentials = new AuthRequest(name, password);
     }
 
     /**
@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putBoolean("remember", true);
-        editor.putString("name", credentials.getName());
+        editor.putString("user", credentials.getUser());
         editor.putString("password", credentials.getPassword());
 
         editor.apply();

@@ -1,20 +1,20 @@
 package bdisfer1410.controldepresencia.login;
 
-public class UserCredentials {
-    private String name;
+public class AuthRequest {
+    private String user;
     private String password;
 
-    public UserCredentials(String name, String password) {
-        this.name = name;
+    public AuthRequest(String user, String password) {
+        this.user = user;
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
@@ -26,7 +26,7 @@ public class UserCredentials {
     }
 
     public boolean isNameValid() {
-        return name != null && !name.isBlank();
+        return user != null && !user.isBlank();
     }
 
     public boolean isPasswordValid() {
