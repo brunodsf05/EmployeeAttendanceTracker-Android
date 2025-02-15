@@ -27,22 +27,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    // Views
+    // Variables
+    //region Views
     private ScrollView scrollview;
     private LinearLayout layoutInput;
     private EditText inputUser, inputPassword;
     private TextView outputError;
     private CheckBox checkboxRemember;
+    //endregion
 
-    // Estado
+    //region Estado
     private SharedPreferences sharedPreferences;
     private AuthService authService;
+    //endregion
 
-    // Datos
+    //region Datos
     private AuthRequest credentials;
+    //endregion
 
-
-
+    // Android
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    // Funciones
     /**
      * Intenta pasar al {@link MainActivity} mediante un inicio de sesión con {@code credentials}.
      */
