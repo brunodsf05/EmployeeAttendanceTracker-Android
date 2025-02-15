@@ -3,6 +3,16 @@ Hecho por Bruno Di Sabatino
 
 ## Útil
 
+### Navegar por el código
+
+Las clases no son cortas, por lo que recomiendo utilizar combinaciones de tecla para "plegar" el
+código, es decir; Solo ver los nombres de los métodos más no su lógica.
+
+#### Combinaciones de tecla
+
+``CTRL+SHIFT+MENOS`` Plegar código.
+``CTRL+SHIFT+MÁS`` Desplegar código.
+
 ### Error de AGP incompatible
 1. Abrir [/gradle/libs.version.toml](/gradle/libs.versions.toml).
 2. Ubicar la línea ``agp = "X.X.X"``, debajo de ``[versions]``.
