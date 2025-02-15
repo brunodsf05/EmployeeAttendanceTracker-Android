@@ -3,8 +3,13 @@ package bdisfer1410.controldepresencia.login;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +31,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     // Views
+    private ScrollView scrollview;
+    private LinearLayout layoutInput;
     private EditText inputUser, inputPassword;
     private TextView outputError;
     private CheckBox checkboxRemember;
@@ -51,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Vincular vistas a variables
+        scrollview = findViewById(R.id.scrollview);
+        layoutInput = findViewById(R.id.layoutInput);
         inputUser = findViewById(R.id.inputUser);
         inputPassword = findViewById(R.id.inputPassword);
         outputError = findViewById(R.id.outputError);
@@ -68,6 +77,16 @@ public class LoginActivity extends AppCompatActivity {
 
             attemptLogIn();
         });
+
+        // Centrar linearLayout en el espacio disponible dejado por el teclado
+        View.OnFocusChangeListener onInputFocusScrollToIt = (v, hasFocus) -> {
+            if (hasFocus) {
+                v.postDelayed(() -> scrollview.smoothScrollTo(0, layoutInput.getTop()), 100);
+            }
+        };
+
+        inputUser.setOnFocusChangeListener(onInputFocusScrollToIt);
+        inputPassword.setOnFocusChangeListener(onInputFocusScrollToIt);
 
         // Cargar datos
         sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
