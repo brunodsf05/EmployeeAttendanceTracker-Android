@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -113,9 +114,9 @@ public class LoginActivity extends AppCompatActivity {
 
         outputError.setText("");
 
-        authService.login(credentials).enqueue(new Callback<AuthResponse>() {
+        authService.login(credentials).enqueue(new Callback<>() {
             @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+            public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
                 boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
 
                 if (!isResponseSuccessful) {
@@ -132,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
                 outputError.setText("ERRORFAILURE");
             }
         });
