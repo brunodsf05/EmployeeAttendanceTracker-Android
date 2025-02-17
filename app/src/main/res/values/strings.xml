@@ -2,6 +2,9 @@
     <!-- Aplicación -->
     <string name="app_name">Control De Presencia 2025</string>
 
+    <!-- Aplicación: Errores -->
+    <string name="app_error_anyservice_unknownkey">Error desconocido</string>
+
     <!-- Activity: Fichajes: Views -->
     <string name="main_title">Fichar</string>
     <string name="main_mnu_history">Ver mis entradas y salidas</string>
@@ -31,4 +34,5 @@
     <string name="login_error_authservice_response">La respuesta del servidor es inválida</string>
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
     <string name="login_error_authservice_invalidpassword">La contraseña no es válida</string>
+
 </resources>
