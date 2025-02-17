@@ -3,7 +3,7 @@
     <string name="app_name">Control De Presencia 2025</string>
 
     <!-- Aplicación: Errores -->
-    <string name="app_error_anyservice_unknownkey">Error desconocido</string>
+    <string name="app_error_anyservice_unknownkey">El servidor devolvió un error desconocido</string>
 
     <!-- Activity: Fichajes: Views -->
     <string name="main_title">Fichar</string>
