@@ -19,7 +19,7 @@ public class Util {
 
         return (resId != 0)
                 ? context.getString(resId)
-                : key;
+                : fallbackMessage;
     }
 
     /**
