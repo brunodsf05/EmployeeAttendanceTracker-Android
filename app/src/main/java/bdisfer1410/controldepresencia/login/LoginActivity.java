@@ -3,6 +3,7 @@ package bdisfer1410.controldepresencia.login;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.RetrofitClient;
+import bdisfer1410.controldepresencia.Util;
 import bdisfer1410.controldepresencia.clockin.MainActivity;
 import bdisfer1410.controldepresencia.login.api.AuthRequest;
 import bdisfer1410.controldepresencia.login.api.AuthResponse;
@@ -117,24 +119,33 @@ public class LoginActivity extends AppCompatActivity {
         authService.login(credentials).enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
+                // Verificar la respuesta JSON
                 boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
 
                 if (!isResponseSuccessful) {
-                    outputError.setText("ResponseNotSuccesfull"); // TODO: CHANGE
+                    outputError.setText(R.string.login_error_authservice_response);
                     return;
                 }
 
+                // Manejar la respuesta del servidor
                 AuthResponse auth = response.body();
-                // TODO: TEMPORAL
-                String a = String.valueOf(auth.isSuccess());
-                a += " ";
-                a += auth.isSuccess() ? auth.getToken() : auth.getMessage();
-                outputError.setText(a);
+
+                if (auth.isSuccess()) {
+                    Log.d("TOKEN", auth.getToken());
+                }
+                else {
+                    outputError.setText(
+                            Util.getMessage(
+                                    LoginActivity.this,
+                                    "login_error_authservice_"+auth.getMessage()
+                            )
+                    );
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
-                outputError.setText("ERRORFAILURE");
+                outputError.setText(R.string.login_error_authservice_connection);
             }
         });
     }

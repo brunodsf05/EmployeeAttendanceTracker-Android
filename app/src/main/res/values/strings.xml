@@ -20,9 +20,15 @@
     <string name="login_btn_login">Entrar</string>
     <string name="login_btn_remember">Recordar credenciales del usuario</string>
 
-    <!-- Activity: Inicio de sesión: Errores -->
+    <!-- Activity: Inicio de sesión: Errores: Locales -->
     <string name="login_error_input_username">Debes escribir un nombre de usuario</string>
     <string name="login_error_input_password">Debes escribir una contraseña</string>
     <string name="login_error_input_credentials">Las credenciales no son válidas</string>
     <string name="login_error_load_credentials">No se pudieron cargar las credenciales</string>
+
+    <!-- Activity: Inicio de sesión: Errores: Servidor -->
+    <string name="login_error_authservice_connection">No se pudo contactar con el servidor</string>
+    <string name="login_error_authservice_response">La respuesta del servidor es inválida</string>
+    <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
+    <string name="login_error_authservice_invalidpassword">La contraseña no es válida</string>
 </resources>
