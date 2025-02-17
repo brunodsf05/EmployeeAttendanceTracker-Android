@@ -56,14 +56,14 @@
                 android:id="@+id/textUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/login_lbl_user"
+                android:text="@string/login_lbl_username"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/inputUser"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="@string/login_hnt_user"
+                android:hint="@string/login_hnt_username"
                 android:inputType="textEmailAddress"
                 tools:ignore="TextContrastCheck" />
 
