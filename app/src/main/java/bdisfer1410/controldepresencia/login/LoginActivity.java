@@ -134,10 +134,13 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("TOKEN", auth.getToken());
                 }
                 else {
+                    Log.e("UNKNOWN_ERROR_CODE", auth.getMessage());
+
                     outputError.setText(
                             Util.getMessage(
                                     LoginActivity.this,
-                                    "login_error_authservice_"+auth.getMessage()
+                                    "login_error_authservice_"+auth.getMessage(),
+                                    R.string.app_error_anyservice_unknownkey
                             )
                     );
                 }
