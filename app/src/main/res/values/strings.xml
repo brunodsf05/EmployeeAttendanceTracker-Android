@@ -33,6 +33,6 @@
     <string name="login_error_authservice_connection">No se pudo contactar con el servidor</string>
     <string name="login_error_authservice_response">La respuesta del servidor es inválida</string>
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
-    <string name="login_error_authservice_invalidpassword">La contraseña no es válida</string>
+    <string name="login_error_authservice_incorrectpassword">La contraseña no es válida</string>
 
 </resources>
