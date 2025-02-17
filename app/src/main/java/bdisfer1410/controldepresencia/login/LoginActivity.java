@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     //region Views
     private ScrollView scrollview;
     private LinearLayout layoutInput;
-    private EditText inputUser, inputPassword;
+    private EditText inputUsername, inputPassword;
     private TextView outputError;
     private CheckBox checkboxRemember;
     //endregion
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         // Vincular vistas a variables
         scrollview = findViewById(R.id.scrollview);
         layoutInput = findViewById(R.id.layoutInput);
-        inputUser = findViewById(R.id.inputUser);
+        inputUsername = findViewById(R.id.inputUser);
         inputPassword = findViewById(R.id.inputPassword);
         outputError = findViewById(R.id.outputError);
         checkboxRemember = findViewById(R.id.checkboxRemember);
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        inputUser.setOnFocusChangeListener(onInputFocusScrollToIt);
+        inputUsername.setOnFocusChangeListener(onInputFocusScrollToIt);
         inputPassword.setOnFocusChangeListener(onInputFocusScrollToIt);
 
         // Cargar datos
@@ -134,12 +134,12 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("TOKEN", auth.getToken());
                 }
                 else {
-                    Log.e("UNKNOWN_ERROR_CODE", auth.getMessage());
+                    Log.e("UNKNOWN_ERROR_CODE", auth.getError());
 
                     outputError.setText(
                             Util.getMessage(
                                     LoginActivity.this,
-                                    "login_error_authservice_"+auth.getMessage(),
+                                    auth.getErrorKey(),
                                     R.string.app_error_anyservice_unknownkey
                             )
                     );
@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
      * Reemplaza el valor de {@code credentials} con uno cuyos valores fueron sacados del formulario.
      */
     private void loadCredentialsFromFormulary() {
-        String name = inputUser.getText().toString();
+        String name = inputUsername.getText().toString();
         String password = inputPassword.getText().toString();
 
         credentials = new AuthRequest(name, password);
@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        inputUser.setText(name);
+        inputUsername.setText(name);
         inputPassword.setText(password);
 
         credentials = new AuthRequest(name, password);
@@ -190,8 +190,8 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateCredentials() {
         boolean valid = true;
 
-        if (!credentials.isNameValid()) {
-            inputUser.setError(getString(R.string.login_error_input_username));
+        if (!credentials.isUsernameValid()) {
+            inputUsername.setError(getString(R.string.login_error_input_username));
             valid = false;
         }
 
@@ -210,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putBoolean("remember", true);
-        editor.putString("username", credentials.getUser());
+        editor.putString("username", credentials.getUsername());
         editor.putString("password", credentials.getPassword());
 
         editor.apply();
