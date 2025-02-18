@@ -101,12 +101,18 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword.setOnFocusChangeListener(onInputFocusScrollToIt);
 
         // Cargar datos
-        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-        boolean autoLogin = sharedPreferences.getBoolean("remember", false);
+        Intent intent = getIntent();
+        boolean cancelAutoLogin = intent.getBooleanExtra("CANCEL_AUTO_LOGIN", false);
 
-        if (autoLogin) {
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+        boolean loadCredentials = sharedPreferences.getBoolean("remember", false);
+
+        if (loadCredentials) {
             checkboxRemember.setChecked(true);
             loadCredentialsFromStorage();
+
+            if (cancelAutoLogin) return;
+
             attemptLogIn();
         }
     }
