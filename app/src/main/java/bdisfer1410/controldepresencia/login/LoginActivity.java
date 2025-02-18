@@ -127,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
         authService.login(credentials).enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
+                progressbar.setVisibility(GONE);
+
                 // Verificar la respuesta JSON
                 boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
 
@@ -137,8 +139,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Manejar la respuesta del servidor
                 AuthResponse auth = response.body();
-
-                progressbar.setVisibility(GONE);
 
                 if (auth.isSuccess()) {
                     Log.d("API", String.format("Token: %s...", auth.getToken().substring(0,3)));
