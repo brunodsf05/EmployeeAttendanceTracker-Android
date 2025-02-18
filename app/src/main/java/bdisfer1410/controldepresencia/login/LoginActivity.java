@@ -27,7 +27,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
-import bdisfer1410.controldepresencia.RetrofitClient;
+import bdisfer1410.controldepresencia.ApiClient;
 import bdisfer1410.controldepresencia.Util;
 import bdisfer1410.controldepresencia.clockin.MainActivity;
 import bdisfer1410.controldepresencia.login.api.AuthRequest;
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
-        authService = RetrofitClient.getInstance().create(AuthService.class);
+        authService = ApiClient.retrofit.create(AuthService.class);
 
         findViewById(R.id.buttonLogin).setOnClickListener(v -> {
             loadCredentialsFromFormulary();
