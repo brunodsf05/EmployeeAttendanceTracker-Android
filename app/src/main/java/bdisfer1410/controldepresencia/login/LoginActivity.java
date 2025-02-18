@@ -141,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressbar.setVisibility(GONE);
 
                 if (auth.isSuccess()) {
-                    Log.d("TOKEN", String.format("%s...", auth.getToken().substring(0,3)));
+                    Log.d("API", String.format("Token: %s...", auth.getToken().substring(0,3)));
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("TOKEN", auth.getToken());
@@ -150,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Log.e("UNKNOWN_ERROR_CODE", auth.getError());
+                    Log.e("API", String.format("Error: %s", auth.getError()));
 
                     outputError.setText(
                             Util.getMessage(
@@ -164,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
+                Log.e("API", "Error de conexión con el servidor");
                 progressbar.setVisibility(GONE);
                 outputError.setText(R.string.login_error_authservice_connection);
             }
