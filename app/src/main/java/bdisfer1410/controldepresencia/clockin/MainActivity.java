@@ -87,19 +87,26 @@ public class MainActivity extends AppCompatActivity {
         // Obtener el ID del elemento seleccionado
         int id = item.getItemId();
 
-        if (id == R.id.mnu_history) {
-            Log.d("CLICK", "Historial");
-        }
-        else if (id == R.id.mnu_config) {
-            Log.d("CLICK", "Configuración");
-        }
-        else if (id == R.id.mnu_logout) {
-            Log.d("CLICK", "Cerrar sesión");
-        }
+             if (id == R.id.mnu_history) onMenuHistoryClick();
+        else if (id == R.id.mnu_config ) onMenuConfigurationClick();
+        else if (id == R.id.mnu_logout ) onMenuLogoutClick();
         else {
             Log.e("CLICK", "MenuItem sin implementar");
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Acciones: Menú tres puntos
+    private void onMenuHistoryClick() {
+        Log.d("CLICK", "Historial");
+    }
+
+    private void onMenuConfigurationClick() {
+        Log.d("CLICK", "Configuración");
+    }
+
+    private void onMenuLogoutClick() {
+        Log.d("CLICK", "Cerrar sesión");
     }
 }
