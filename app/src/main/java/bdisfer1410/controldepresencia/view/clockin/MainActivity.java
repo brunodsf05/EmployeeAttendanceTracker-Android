@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia.clockin;
+package bdisfer1410.controldepresencia.view.clockin;
 
 
 import android.annotation.SuppressLint;
@@ -18,7 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
-import bdisfer1410.controldepresencia.login.LoginActivity;
+import bdisfer1410.controldepresencia.view.login.LoginActivity;
 
 
 public class MainActivity extends AppCompatActivity {

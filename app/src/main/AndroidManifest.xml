@@ -18,7 +18,7 @@
         android:theme="@style/Theme.ControlDePresencia2025Android"
         tools:targetApi="31">
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".clockin.MainActivity"
+            android:name=".view.clockin.MainActivity"
             android:exported="false"/>
     </application>
 

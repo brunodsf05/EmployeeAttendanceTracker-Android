@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia.login;
+package bdisfer1410.controldepresencia.view.login;
 
 
 import static android.view.View.GONE;
@@ -29,10 +29,10 @@ import androidx.core.view.WindowInsetsCompat;
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.ApiClient;
 import bdisfer1410.controldepresencia.Util;
-import bdisfer1410.controldepresencia.clockin.MainActivity;
-import bdisfer1410.controldepresencia.login.api.AuthRequest;
-import bdisfer1410.controldepresencia.login.api.AuthResponse;
-import bdisfer1410.controldepresencia.login.api.AuthService;
+import bdisfer1410.controldepresencia.view.clockin.MainActivity;
+import bdisfer1410.controldepresencia.view.login.api.AuthRequest;
+import bdisfer1410.controldepresencia.view.login.api.AuthResponse;
+import bdisfer1410.controldepresencia.view.login.api.AuthService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
