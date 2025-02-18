@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputUsername, inputPassword;
     private TextView outputError;
     private ProgressBar progressbar;
+    private Button buttonLogin;
     private CheckBox checkboxRemember;
     //endregion
 
@@ -75,12 +77,13 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = findViewById(R.id.inputPassword);
         outputError = findViewById(R.id.outputError);
         progressbar = findViewById(R.id.progressbar);
+        buttonLogin = findViewById(R.id.buttonLogin);
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
         authService = ApiClient.retrofit.create(AuthService.class);
 
-        findViewById(R.id.buttonLogin).setOnClickListener(v -> {
+        buttonLogin.setOnClickListener(v -> {
             loadCredentialsFromFormulary();
 
             if (checkboxRemember.isChecked()) {
@@ -129,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        buttonLogin.setEnabled(false);
         outputError.setText("");
         progressbar.setVisibility(VISIBLE);
 
@@ -170,6 +174,8 @@ public class LoginActivity extends AppCompatActivity {
                                     R.string.app_error_anyservice_unknownkey
                             )
                     );
+
+                    buttonLogin.setEnabled(true);
                 }
             }
 
@@ -178,6 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("API", "Error de conexión con el servidor");
                 progressbar.setVisibility(GONE);
                 outputError.setText(R.string.login_error_authservice_connection);
+                buttonLogin.setEnabled(true);
             }
         });
     }
