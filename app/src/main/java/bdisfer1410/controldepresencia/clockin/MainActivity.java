@@ -2,6 +2,7 @@ package bdisfer1410.controldepresencia.clockin;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -53,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
         buttonClock.setOnClickListener(v -> {
             Log.d("CLICK", "Fichar");
         });
+
+        // Cargar el token
+        Intent intent = getIntent();
+
+        if (intent != null && intent.hasExtra("TOKEN")) {
+            token = intent.getStringExtra("TOKEN");
+            Log.d("TOKEN", String.format("Recibido un token de sesión %s...", token.substring(0,3)));
+        }
+        else {
+            Log.e("TOKEN", "No se recibió un token de sesión");
+        }
     }
 
     @SuppressLint("RestrictedApi")
