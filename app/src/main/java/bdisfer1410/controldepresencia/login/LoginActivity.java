@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -140,7 +141,13 @@ public class LoginActivity extends AppCompatActivity {
                 progressbar.setVisibility(GONE);
 
                 if (auth.isSuccess()) {
-                    Log.d("TOKEN", auth.getToken());
+                    Log.d("TOKEN", String.format("%s...", auth.getToken().substring(0,3)));
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("TOKEN", auth.getToken());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    startActivity(intent);
                 }
                 else {
                     Log.e("UNKNOWN_ERROR_CODE", auth.getError());
