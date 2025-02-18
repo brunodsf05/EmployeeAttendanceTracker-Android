@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.Toolbar;
@@ -110,6 +111,24 @@ public class MainActivity extends AppCompatActivity {
     private void onMenuLogoutClick() {
         Log.d("CLICK", "Cerrar sesión");
 
+        // Definir popup
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setMessage("¿Seguro que quieres cerrar la sesión?")
+                .setNegativeButton("No", null)
+                .setPositiveButton("Sí", (dialog, which) -> logout());
+
+
+        // Mostrar popup
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    // Lógica
+
+    /**
+     * Regresa a la pantalla de inicio de sesión.
+     */
+    private void logout() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.putExtra("CANCEL_AUTO_LOGIN", true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
