@@ -1,5 +1,8 @@
 package bdisfer1410.controldepresencia.login;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -36,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout layoutInput;
     private EditText inputUsername, inputPassword;
     private TextView outputError;
+    private ProgressBar progressbar;
     private CheckBox checkboxRemember;
     //endregion
 
@@ -66,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         inputUsername = findViewById(R.id.inputUser);
         inputPassword = findViewById(R.id.inputPassword);
         outputError = findViewById(R.id.outputError);
+        progressbar = findViewById(R.id.progressbar);
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
@@ -115,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         outputError.setText("");
+        progressbar.setVisibility(VISIBLE);
 
         authService.login(credentials).enqueue(new Callback<>() {
             @Override
@@ -129,6 +136,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Manejar la respuesta del servidor
                 AuthResponse auth = response.body();
+
+                progressbar.setVisibility(GONE);
 
                 if (auth.isSuccess()) {
                     Log.d("TOKEN", auth.getToken());
@@ -148,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
+                progressbar.setVisibility(GONE);
                 outputError.setText(R.string.login_error_authservice_connection);
             }
         });
