@@ -172,7 +172,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (name == null || password == null) {
             outputError.setText(R.string.login_error_load_credentials);
-            return;
         }
 
         inputUsername.setText(name);
