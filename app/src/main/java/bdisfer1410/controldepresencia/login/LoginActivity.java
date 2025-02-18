@@ -208,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
      * Esto de hecho se soluciona solo ya que la llamada ocasiona que el servidor vuelva a ponerse en marcha.
      */
     private void tryAgainAttemptLogInBecauseServerWasSleeping() {
-        if (times_attempted_to_awake_server > MAX_ATTEMPTS_TO_AWAKE_SERVER) {
+        if (times_attempted_to_awake_server < MAX_ATTEMPTS_TO_AWAKE_SERVER) {
             Log.d("API", String.format(
                     "Parece ser que el servidor está inactivo, se repite la petición %d/%d",
                     times_attempted_to_awake_server,
