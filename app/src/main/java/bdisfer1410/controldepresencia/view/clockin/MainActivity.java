@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (intent != null && intent.hasExtra("TOKEN")) {
             token = intent.getStringExtra("TOKEN");
+            assert token != null;
             Log.d("TOKEN", String.format("Recibido un token de sesión %s...", token.substring(0,3)));
         }
         else {
