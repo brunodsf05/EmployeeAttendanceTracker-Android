@@ -20,6 +20,15 @@ import bdisfer1410.controldepresencia.R;
 
 
 public class MainActivity extends AppCompatActivity {
+    // Variables
+    //region Views
+    private Button buttonClock;
+    //endregion
+
+    //region Datos
+    private String token;
+    //endregion
+
     // Android
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Vincular vistas a variables
         Toolbar toolbar = findViewById(R.id.toolbar);
-        Button buttonClock = findViewById(R.id.btnClock);
+        buttonClock = findViewById(R.id.btnClock);
 
         // Configurar la toolbar
         toolbar.setTitle(R.string.main_title);
