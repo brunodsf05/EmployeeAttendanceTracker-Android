@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia.login.api;
+package bdisfer1410.controldepresencia.view.login.api;
 
 public class AuthResponse {
     private static final String ERROR_KEYNAME_SUFFIX = "login_error_authservice_";
