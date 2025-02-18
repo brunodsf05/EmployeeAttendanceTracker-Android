@@ -139,6 +139,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Verificar la respuesta JSON
                 boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
+                Log.i("API", String.format("El código de la respuesta fue succesful: %b", response.isSuccessful()));
+                Log.i("API", String.format("El código de la respuesta es el número: %d", response.code()));
+                Log.i("API", String.format("El cuerpo de la respuesta es null: %b", response.body() == null));
 
                 if (!isResponseSuccessful) {
                     outputError.setText(R.string.login_error_authservice_response);
