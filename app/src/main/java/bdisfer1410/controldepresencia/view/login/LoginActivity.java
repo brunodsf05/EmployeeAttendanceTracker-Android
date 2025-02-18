@@ -40,10 +40,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     // Variables
-    //region Configuración
-    private static final int MAX_ATTEMPTS_TO_AWAKE_SERVER = 2;
-    //endregion
-
     //region Views
     private ScrollView scrollview;
     private LinearLayout layoutInput;
@@ -142,16 +138,6 @@ public class LoginActivity extends AppCompatActivity {
         authService.login(credentials).enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
-                // Puede que el servidor estuviese inactivo, por lo que intentamos de nuevo
-                // No es infinito, esta limitado
-                if (response.code() == 500) {
-                    new Handler(Looper.getMainLooper()).post(
-                            () -> tryAgainAttemptLogInBecauseServerWasSleeping()
-                    );
-                    return;
-                }
-
-                // El servidor está despierto
                 progressbar.setVisibility(GONE);
 
                 // Verificar la respuesta JSON
@@ -197,29 +183,6 @@ public class LoginActivity extends AppCompatActivity {
                 outputError.setText(R.string.login_error_authservice_connection);
             }
         });
-    }
-
-    /**
-     * Reintenta el inicio de sesión si es que el servidor estuviese en reposo.
-     *
-     * <h1>Contexto</h1>
-     * Si el servidor de PythonAnywhere no recibe durante mucho tiempo una petición, se pondrá en reposo.
-     * Lo que hará que {@code attemptLogIn()} falle, recibiendo como respuesta el código 500 (inactividad).
-     * Esto de hecho se soluciona solo ya que la llamada ocasiona que el servidor vuelva a ponerse en marcha.
-     */
-    private void tryAgainAttemptLogInBecauseServerWasSleeping() {
-        if (times_attempted_to_awake_server < MAX_ATTEMPTS_TO_AWAKE_SERVER) {
-            Log.d("API", String.format(
-                    "Parece ser que el servidor está inactivo, se repite la petición %d/%d",
-                    times_attempted_to_awake_server,
-                    MAX_ATTEMPTS_TO_AWAKE_SERVER
-            ));
-            attemptLogIn();
-            times_attempted_to_awake_server++;
-        }
-        else {
-            Log.e("API", "No se reintento la petición de login, se alcanzo el límite de intentos");
-        }
     }
 
     // Credenciales
