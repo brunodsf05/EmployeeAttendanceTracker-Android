@@ -3,9 +3,15 @@ package bdisfer1410.controldepresencia.view.login.api;
 public class AuthResponse {
     private static final String ERROR_KEYNAME_SUFFIX = "login_error_authservice_";
 
-    private boolean success;
-    private String token;
-    private String error;
+    private final boolean success;
+    private final String token;
+    private final String error;
+
+    public AuthResponse(boolean success, String token, String error) {
+        this.success = success;
+        this.token = token;
+        this.error = error;
+    }
 
     public boolean isSuccess() {
         return success;

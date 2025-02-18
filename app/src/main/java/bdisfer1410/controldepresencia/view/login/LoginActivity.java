@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -52,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
     //region Estado
     private SharedPreferences sharedPreferences;
     private AuthService authService;
-    private int times_attempted_to_awake_server = 0;
     //endregion
 
     //region Datos
