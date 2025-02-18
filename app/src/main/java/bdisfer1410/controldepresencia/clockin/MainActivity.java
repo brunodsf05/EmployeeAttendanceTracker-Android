@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
+import bdisfer1410.controldepresencia.login.LoginActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -108,5 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void onMenuLogoutClick() {
         Log.d("CLICK", "Cerrar sesión");
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.putExtra("CANCEL_AUTO_LOGIN", true);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
     }
 }
