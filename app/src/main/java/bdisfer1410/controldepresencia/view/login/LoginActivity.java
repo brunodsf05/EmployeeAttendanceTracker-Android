@@ -143,8 +143,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 // Verificar la respuesta JSON
                 boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
-                Log.i("API", String.format("El código de la respuesta fue succesful: %b", response.isSuccessful()));
-                Log.i("API", String.format("El código de la respuesta es el número: %d", response.code()));
+                Log.i("API", String.format("El codigo de la respuesta fue succesful: %b", response.isSuccessful()));
+                Log.i("API", String.format("El codigo de la respuesta es el numero: %d", response.code()));
                 Log.i("API", String.format("El cuerpo de la respuesta es null: %b", response.body() == null));
 
                 if (!isResponseSuccessful) {
@@ -160,8 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                     String refreshToken = auth.getRefreshToken();
 
                     Log.d("API", "¡Se recibieron los tokens!");
-                    Log.d("TOKEN", String.format("El servidor devolvió el de acceso: %s...", Util.trimText(accessToken, 10)));
-                    Log.d("TOKEN", String.format("El servidor devolvió el de refresco: %s...", Util.trimText(refreshToken, 10)));
+                    Log.d("TOKEN", String.format("El servidor devolvio el de acceso: %s...", Util.trimText(accessToken, 10)));
+                    Log.d("TOKEN", String.format("El servidor devolvio el de refresco: %s...", Util.trimText(refreshToken, 10)));
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("ACCESS_TOKEN", accessToken);
@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
-                Log.e("API", "Error de conexión con el servidor");
+                Log.e("API", "Error de conexion con el servidor");
                 progressbar.setVisibility(GONE);
                 outputError.setText(R.string.login_error_authservice_connection);
                 buttonLogin.setEnabled(true);
