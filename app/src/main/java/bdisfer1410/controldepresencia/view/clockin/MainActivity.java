@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             accessToken = intent.getStringExtra("ACCESS_TOKEN");
             refreshToken = intent.getStringExtra("REFRESH_TOKEN");
-            Log.d("TOKEN", String.format("El Intent devolvió el de acceso: %s...", Util.trimText(accessToken, 10)));
-            Log.d("TOKEN", String.format("El Intent devolvió el de refresco: %s...", Util.trimText(refreshToken, 10)));
+            Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Util.trimText(accessToken, 10)));
+            Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Util.trimText(refreshToken, 10)));
         }
     }
 
