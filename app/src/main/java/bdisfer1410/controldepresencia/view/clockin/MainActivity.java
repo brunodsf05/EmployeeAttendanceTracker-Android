@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
+import bdisfer1410.controldepresencia.Util;
 import bdisfer1410.controldepresencia.view.login.LoginActivity;
 
 
@@ -60,10 +61,9 @@ public class MainActivity extends AppCompatActivity {
         // Cargar el token
         Intent intent = getIntent();
 
-        if (intent != null && intent.hasExtra("TOKEN")) {
-            token = intent.getStringExtra("TOKEN");
-            assert token != null;
-            Log.d("TOKEN", String.format("Recibido un token de sesión %s...", token.substring(0,3)));
+        if (intent != null && intent.hasExtra("ACCESS_TOKEN")) {
+            token = intent.getStringExtra("ACCESS_TOKEN");
+            Log.d("TOKEN", String.format("Recibido un token de sesión %s...", Util.trimText(token, 3)));
         }
         else {
             Log.e("TOKEN", "No se recibió un token de sesión");

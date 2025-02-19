@@ -156,10 +156,12 @@ public class LoginActivity extends AppCompatActivity {
                 AuthResponse auth = response.body();
 
                 if (auth.isSuccess()) {
-                    Log.d("API", String.format("Token: %s...", auth.getToken().substring(0,3)));
+                    String accessToken = auth.getAccessToken();
+
+                    Log.d("API", String.format("Token: %s...", Util.trimText(accessToken, 3)));
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("TOKEN", auth.getToken());
+                    intent.putExtra("ACCESS_TOKEN", accessToken);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(intent);

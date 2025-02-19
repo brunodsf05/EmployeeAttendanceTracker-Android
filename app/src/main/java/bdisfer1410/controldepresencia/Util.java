@@ -46,4 +46,10 @@ public class Util {
     public static String getMessage(Context context, String key) {
         return getMessage(context, key, key);
     }
+
+    public static String trimText(String text, int length) {
+        return (text == null)
+                ? null
+                : text.substring(0, length);
+    }
 }
