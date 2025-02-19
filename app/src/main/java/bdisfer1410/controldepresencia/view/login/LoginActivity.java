@@ -157,11 +157,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (auth.isSuccess()) {
                     String accessToken = auth.getAccessToken();
+                    String refreshToken = auth.getRefreshToken();
 
-                    Log.d("API", String.format("Token: %s...", Util.trimText(accessToken, 3)));
+                    Log.d("API", "¡Se recibieron los tokens!");
+                    Log.d("TOKEN", String.format("El servidor devolvió el de acceso: %s...", Util.trimText(accessToken, 10)));
+                    Log.d("TOKEN", String.format("El servidor devolvió el de refresco: %s...", Util.trimText(refreshToken, 10)));
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("ACCESS_TOKEN", accessToken);
+                    intent.putExtra("REFRESH_TOKEN", refreshToken);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(intent);

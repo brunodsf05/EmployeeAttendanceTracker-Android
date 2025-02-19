@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
     //endregion
 
     //region Datos
-    private String token;
+    private String accessToken = "";
+    private String refreshToken = "";
     //endregion
 
     // Android
@@ -61,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
         // Cargar el token
         Intent intent = getIntent();
 
-        if (intent != null && intent.hasExtra("ACCESS_TOKEN")) {
-            token = intent.getStringExtra("ACCESS_TOKEN");
-            Log.d("TOKEN", String.format("Recibido un token de sesión %s...", Util.trimText(token, 3)));
+        if (intent == null) {
+            Log.e("TOKEN", "No se recibió ningún token");
         }
         else {
-            Log.e("TOKEN", "No se recibió un token de sesión");
+            accessToken = intent.getStringExtra("ACCESS_TOKEN");
+            refreshToken = intent.getStringExtra("REFRESH_TOKEN");
+            Log.d("TOKEN", String.format("El Intent devolvió el de acceso: %s...", Util.trimText(accessToken, 10)));
+            Log.d("TOKEN", String.format("El Intent devolvió el de refresco: %s...", Util.trimText(refreshToken, 10)));
         }
     }
 
