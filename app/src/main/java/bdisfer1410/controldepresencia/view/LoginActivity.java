@@ -146,8 +146,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("API", String.format("El codigo de la respuesta es el numero: %d", response.code()));
                 Log.i("API", String.format("El cuerpo de la respuesta es null: %b", response.body() == null));
 
-                if (!isResponseSuccessful) {
+                if (!response.isSuccessful()) {
                     outputError.setText(R.string.login_error_authservice_response);
+                    buttonLogin.setEnabled(true);
                     return;
                 }
 
