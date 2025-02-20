@@ -1,4 +1,4 @@
-package bdisfer1410.controldepresencia.view.login;
+package bdisfer1410.controldepresencia.view;
 
 
 import static android.view.View.GONE;
@@ -26,12 +26,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
-import bdisfer1410.controldepresencia.ApiClient;
+import bdisfer1410.controldepresencia.api.ApiClient;
 import bdisfer1410.controldepresencia.Util;
-import bdisfer1410.controldepresencia.view.clockin.MainActivity;
-import bdisfer1410.controldepresencia.view.login.api.AuthRequest;
-import bdisfer1410.controldepresencia.view.login.api.AuthResponse;
-import bdisfer1410.controldepresencia.view.login.api.AuthService;
+import bdisfer1410.controldepresencia.api.auth.AuthRequest;
+import bdisfer1410.controldepresencia.api.auth.AuthResponse;
+import bdisfer1410.controldepresencia.api.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //region Estado
     private SharedPreferences sharedPreferences;
-    private AuthService authService;
+    private ApiService authService;
     //endregion
 
     //region Datos
@@ -81,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
-        authService = ApiClient.retrofit.create(AuthService.class);
+        authService = ApiClient.retrofit.create(ApiService.class);
 
         buttonLogin.setOnClickListener(v -> {
             loadCredentialsFromFormulary();
