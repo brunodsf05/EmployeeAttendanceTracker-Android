@@ -27,7 +27,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.api.ApiClient;
-import bdisfer1410.controldepresencia.Util;
+import bdisfer1410.controldepresencia.tools.Messages;
 import bdisfer1410.controldepresencia.api.auth.AuthRequest;
 import bdisfer1410.controldepresencia.api.auth.AuthResponse;
 import bdisfer1410.controldepresencia.api.ApiService;
@@ -160,8 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                     String refreshToken = auth.getRefreshToken();
 
                     Log.d("API", "¡Se recibieron los tokens!");
-                    Log.d("TOKEN", String.format("El servidor devolvio el de acceso: %s...", Util.trimText(accessToken, 10)));
-                    Log.d("TOKEN", String.format("El servidor devolvio el de refresco: %s...", Util.trimText(refreshToken, 10)));
+                    Log.d("TOKEN", String.format("El servidor devolvio el de acceso: %s...", Messages.trimText(accessToken, 10)));
+                    Log.d("TOKEN", String.format("El servidor devolvio el de refresco: %s...", Messages.trimText(refreshToken, 10)));
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("ACCESS_TOKEN", accessToken);
@@ -174,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("API", String.format("Error: %s", auth.getError()));
 
                     outputError.setText(
-                            Util.getMessage(
+                            Messages.fromKey(
                                     LoginActivity.this,
                                     auth.getErrorKey(),
                                     R.string.app_error_anyservice_unknownkey
