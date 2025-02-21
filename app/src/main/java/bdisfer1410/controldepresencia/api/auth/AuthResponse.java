@@ -3,22 +3,15 @@ package bdisfer1410.controldepresencia.api.auth;
 import com.google.gson.annotations.SerializedName;
 
 public class AuthResponse {
-    private static final String ERROR_KEYNAME_SUFFIX = "login_error_authservice_";
+    @SerializedName("access_token")
+    private final String accessToken;
 
-    private final boolean success;
-    @SerializedName("access_token") private final String accessToken;
-    @SerializedName("refresh_token") private final String refreshToken;
-    private final String error;
+    @SerializedName("refresh_token")
+    private final String refreshToken;
 
-    public AuthResponse(boolean success, String accessToken, String refreshToken, String error) {
-        this.success = success;
+    public AuthResponse(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
-        this.error = error;
-    }
-
-    public boolean isSuccess() {
-        return success;
     }
 
     public String getAccessToken() {
@@ -27,13 +20,5 @@ public class AuthResponse {
 
     public String getRefreshToken() {
         return refreshToken;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public String getErrorKey() {
-        return String.format("%s%s", ERROR_KEYNAME_SUFFIX, error);
     }
 }
