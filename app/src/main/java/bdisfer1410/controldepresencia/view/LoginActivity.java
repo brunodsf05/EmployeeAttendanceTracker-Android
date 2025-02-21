@@ -1,9 +1,6 @@
 package bdisfer1410.controldepresencia.view;
 
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,13 +24,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.api.ApiClient;
+import bdisfer1410.controldepresencia.api.ProCallback;
+import bdisfer1410.controldepresencia.api.auth.AuthErrorResponse;
+import bdisfer1410.controldepresencia.api.auth.AuthResponse;
 import bdisfer1410.controldepresencia.tools.Messages;
 import bdisfer1410.controldepresencia.api.auth.AuthRequest;
-import bdisfer1410.controldepresencia.api.auth.AuthResponse;
 import bdisfer1410.controldepresencia.api.ApiService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -124,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
      * Intenta pasar al {@link MainActivity} mediante un inicio de sesión con {@code credentials}.
      */
     private void attemptLogIn() {
+        // Validar entrada del usuario
         boolean isCredentialsValid = validateCredentials();
 
         if (!isCredentialsValid) {
@@ -131,66 +128,67 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Iniciar animación de carga
         buttonLogin.setEnabled(false);
         outputError.setText("");
-        progressbar.setVisibility(VISIBLE);
+        progressbar.setVisibility(View.VISIBLE);
 
-        authService.login(credentials).enqueue(new Callback<>() {
+        // Cuando el servidor responda...
+        authService.login(credentials).enqueue(new ProCallback<AuthResponse, AuthErrorResponse>() {
             @Override
-            public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
-                progressbar.setVisibility(GONE);
-
-                // Verificar la respuesta JSON
-                boolean isResponseSuccessful = response.isSuccessful() && response.body() != null;
-                Log.i("API", String.format("El codigo de la respuesta fue succesful: %b", response.isSuccessful()));
-                Log.i("API", String.format("El codigo de la respuesta es el numero: %d", response.code()));
-                Log.i("API", String.format("El cuerpo de la respuesta es null: %b", response.body() == null));
-
-                if (!response.isSuccessful()) {
-                    outputError.setText(R.string.login_error_authservice_response);
-                    buttonLogin.setEnabled(true);
-                    return;
-                }
-
-                // Manejar la respuesta del servidor
-                AuthResponse auth = response.body();
-
-                if (auth.isSuccess()) {
-                    String accessToken = auth.getAccessToken();
-                    String refreshToken = auth.getRefreshToken();
-
-                    Log.d("API", "¡Se recibieron los tokens!");
-                    Log.d("TOKEN", String.format("El servidor devolvio el de acceso: %s...", Messages.trimText(accessToken, 10)));
-                    Log.d("TOKEN", String.format("El servidor devolvio el de refresco: %s...", Messages.trimText(refreshToken, 10)));
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("ACCESS_TOKEN", accessToken);
-                    intent.putExtra("REFRESH_TOKEN", refreshToken);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                    startActivity(intent);
-                }
-                else {
-                    Log.e("API", String.format("Error: %s", auth.getError()));
-
-                    outputError.setText(
-                            Messages.fromKey(
-                                    LoginActivity.this,
-                                    auth.getErrorKey(),
-                                    R.string.app_error_anyservice_unknownkey
-                            )
-                    );
-
-                    buttonLogin.setEnabled(true);
-                }
+            protected Class<AuthErrorResponse> getErrorClass() {
+                return AuthErrorResponse.class;
             }
 
             @Override
-            public void onFailure(@NonNull Call<AuthResponse> call, @NonNull Throwable t) {
-                Log.e("API", "Error de conexion con el servidor");
-                progressbar.setVisibility(GONE);
-                outputError.setText(R.string.login_error_authservice_connection);
+            public void beforeResponse() {
+                /* No hay preparación */
+            }
+
+            @Override
+            public void afterResponse() {
+                progressbar.setVisibility(View.GONE);
                 buttonLogin.setEnabled(true);
+            }
+
+            @Override
+            public void onOkResponse(@NonNull AuthResponse okBody) {
+                String accessToken = okBody.getAccessToken();
+                String refreshToken = okBody.getRefreshToken();
+
+                Log.d("API", "¡Se recibieron los tokens!");
+                Log.d("TOKEN", String.format("El servidor devolvió el de acceso: %s...", Messages.trimText(accessToken, 10)));
+                Log.d("TOKEN", String.format("El servidor devolvió el de refresco: %s...", Messages.trimText(refreshToken, 10)));
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("ACCESS_TOKEN", accessToken);
+                intent.putExtra("REFRESH_TOKEN", refreshToken);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onErrorResponse(@NonNull AuthErrorResponse errorBody) {
+                Log.e("API", String.format("Error: %s", errorBody.getShortError()));
+
+                outputError.setText(
+                        Messages.fromKey(
+                                LoginActivity.this,
+                                errorBody.getError(),
+                                R.string.app_error_anyservice_unknownkey
+                        )
+                );
+            }
+
+            @Override
+            public void onNullResponse() {
+                outputError.setText(R.string.login_error_authservice_response);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("API", "Error de conexión con el servidor", t);
+                outputError.setText(R.string.login_error_authservice_connection);
             }
         });
     }
