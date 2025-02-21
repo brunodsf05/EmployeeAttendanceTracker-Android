@@ -26,10 +26,14 @@
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:height="60dp"
+                android:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
                 android:text="@string/login_title"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textSize="44sp"
                 android:textStyle="bold" />
 
             <TextView
