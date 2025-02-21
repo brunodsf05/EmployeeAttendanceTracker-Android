@@ -19,7 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
-import bdisfer1410.controldepresencia.Util;
+import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             accessToken = intent.getStringExtra("ACCESS_TOKEN");
             refreshToken = intent.getStringExtra("REFRESH_TOKEN");
-            Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Util.trimText(accessToken, 10)));
-            Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Util.trimText(refreshToken, 10)));
+            Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Messages.trimText(accessToken, 10)));
+            Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Messages.trimText(refreshToken, 10)));
         }
     }
 

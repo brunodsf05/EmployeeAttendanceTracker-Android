@@ -1,9 +1,12 @@
-package bdisfer1410.controldepresencia;
+package bdisfer1410.controldepresencia.tools;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-public class Util {
+/**
+ * Utilidades relacionadas con Strings.
+ */
+public class Messages {
     /**
      * Obtiene un mensaje de ``strings.xml`` según la clave.
      *
@@ -13,7 +16,7 @@ public class Util {
      *
      * @return El mensaje que guarda {@code key}. Si no lo encuentra devuelve {@code fallbackMessage}.
      */
-    public static String getMessage(Context context, String key, String fallbackMessage) {
+    public static String fromKey(Context context, String key, String fallbackMessage) {
         @SuppressLint("DiscouragedApi")
         int resId = context.getResources().getIdentifier(key, "string", context.getPackageName());
 
@@ -31,8 +34,8 @@ public class Util {
      *
      * @return El mensaje que guarda {@code key}. Si no lo encuentra devuelve el mensaje de {@code fallbackResId}.
      */
-    public static String getMessage(Context context, String key, int fallbackResId) {
-        return getMessage(context, key, context.getString(fallbackResId));
+    public static String fromKey(Context context, String key, int fallbackResId) {
+        return fromKey(context, key, context.getString(fallbackResId));
     }
 
     /**
@@ -43,8 +46,8 @@ public class Util {
      *
      * @return El mensaje que guarda {@code key}. Si no lo encuentra devuelve el texto de {@code key}.
      */
-    public static String getMessage(Context context, String key) {
-        return getMessage(context, key, key);
+    public static String fromKey(Context context, String key) {
+        return fromKey(context, key, key);
     }
 
     public static String trimText(String text, int length) {
