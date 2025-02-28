@@ -23,14 +23,12 @@ import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.api.ApiClient;
 import bdisfer1410.controldepresencia.api.ApiService;
 import bdisfer1410.controldepresencia.api.ProCallback;
-import bdisfer1410.controldepresencia.api.action.ActionErrorResponse;
-import bdisfer1410.controldepresencia.api.action.ActionResponse;
-import bdisfer1410.controldepresencia.api.auth.AuthErrorResponse;
-import bdisfer1410.controldepresencia.api.auth.AuthResponse;
+import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
+import bdisfer1410.controldepresencia.api.clock.action.ClockActionResponse;
 import bdisfer1410.controldepresencia.tools.Messages;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ClockActivity extends AppCompatActivity {
     // Variables
     //region Views
     private Button buttonClock;
@@ -88,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         // Verificar acción de fichaje
         service = ApiClient.retrofit.create(ApiService.class);
 
-        service.action("Bearer "+accessToken).enqueue(new ProCallback<ActionResponse, ActionErrorResponse>() {
+        service.getClockAction("Bearer "+accessToken).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
             @Override
-            protected Class<ActionErrorResponse> getErrorClass() {
-                return ActionErrorResponse.class;
+            protected Class<ClockActionErrorResponse> getErrorClass() {
+                return ClockActionErrorResponse.class;
             }
 
             @Override
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onOkResponse(@NonNull ActionResponse okBody) {
+            public void onOkResponse(@NonNull ClockActionResponse okBody) {
                 String action = okBody.getAction();
 
                 Log.d("API", String.format("¡Se recibió la acción %s!", action));
@@ -113,18 +111,18 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onErrorResponse(@NonNull ActionErrorResponse errorBody) {
+            public void onErrorResponse(@NonNull ClockActionErrorResponse errorBody) {
                 Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
             }
 
             @Override
             public void onNullResponse() {
-               Log.e("API", String.format("NullResponse: %s", getString(R.string.login_error_authservice_response)));
+               Log.e("API", String.format("NullResponse: %s", getString(R.string.app_error_anyservice_response)));
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e("API", String.format("FailedResponse: %s", getString(R.string.login_error_authservice_connection)));
+                Log.e("API", String.format("FailedResponse: %s", getString(R.string.app_error_anyservice_connection)));
             }
         });
     }
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("CLICK", "Cerrar sesión");
 
         // Definir popup
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClockActivity.this)
                 .setMessage("¿Seguro que quieres cerrar la sesión?")
                 .setNegativeButton("No", null)
                 .setPositiveButton("Sí", (dialog, which) -> logout());
@@ -189,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
      * Regresa a la pantalla de inicio de sesión.
      */
     private void logout() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(ClockActivity.this, LoginActivity.class);
         intent.putExtra("CANCEL_AUTO_LOGIN", true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

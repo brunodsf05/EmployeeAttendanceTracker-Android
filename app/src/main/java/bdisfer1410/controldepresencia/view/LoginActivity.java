@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Inicio de sesión
     /**
-     * Intenta pasar al {@link MainActivity} mediante un inicio de sesión con {@code credentials}.
+     * Intenta pasar al {@link ClockActivity} mediante un inicio de sesión con {@code credentials}.
      */
     private void attemptLogIn() {
         // Validar entrada del usuario
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("TOKEN", String.format("El servidor devolvió el de acceso: %s...", Messages.trimText(accessToken, 10)));
                 Log.d("TOKEN", String.format("El servidor devolvió el de refresco: %s...", Messages.trimText(refreshToken, 10)));
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ClockActivity.class);
                 intent.putExtra("ACCESS_TOKEN", accessToken);
                 intent.putExtra("REFRESH_TOKEN", refreshToken);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -182,13 +182,13 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onNullResponse() {
-                outputError.setText(R.string.login_error_authservice_response);
+                outputError.setText(R.string.app_error_anyservice_response);
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.e("API", "Error de conexión con el servidor", t);
-                outputError.setText(R.string.login_error_authservice_connection);
+                outputError.setText(R.string.app_error_anyservice_connection);
             }
         });
     }
