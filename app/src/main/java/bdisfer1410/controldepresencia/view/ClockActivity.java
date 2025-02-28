@@ -25,6 +25,7 @@ import bdisfer1410.controldepresencia.api.ApiService;
 import bdisfer1410.controldepresencia.api.ProCallback;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionResponse;
+import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
 import bdisfer1410.controldepresencia.tools.Messages;
 
@@ -42,6 +43,7 @@ public class ClockActivity extends AppCompatActivity {
 
     //region Datos
     private Tokens tokens;
+    private ClockAction latestClockAction;
     //endregion
     //endregion
 
@@ -94,10 +96,10 @@ public class ClockActivity extends AppCompatActivity {
 
             @Override
             public void onOkResponse(@NonNull ClockActionResponse okBody) {
-                String action = okBody.getAction();
+                Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
-                Log.d("API", String.format("¡Se recibió la acción %s!", action));
-
+                latestClockAction = okBody.getAction();
+                buttonClock.setEnabled(latestClockAction.canClock());
             }
 
             @Override
