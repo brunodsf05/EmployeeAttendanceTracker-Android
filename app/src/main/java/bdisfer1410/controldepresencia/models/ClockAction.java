@@ -49,4 +49,18 @@ public enum ClockAction {
                 return R.string.clock_btn_unknown;
         }
     }
+
+    // Debug helpers
+    public ClockAction getNext() {
+        switch (this) {
+            case WAIT: return FREEDAY;
+            case START: return WAIT;
+            case WORK: return START;
+            case EXIT: return WORK;
+            case RECOVER: return EXIT;
+            case NOTIFY_AUSENCE: return RECOVER;
+            case TOBEIN_WORK: return NOTIFY_AUSENCE;
+            case FREEDAY: default: return TOBEIN_WORK;
+        }
+    }
 }
