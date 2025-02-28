@@ -25,6 +25,7 @@ import bdisfer1410.controldepresencia.api.ApiService;
 import bdisfer1410.controldepresencia.api.ProCallback;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionResponse;
+import bdisfer1410.controldepresencia.models.Tokens;
 import bdisfer1410.controldepresencia.tools.Messages;
 
 
@@ -39,8 +40,7 @@ public class ClockActivity extends AppCompatActivity {
     //endregion
 
     //region Datos
-    private String accessToken = "";
-    private String refreshToken = "";
+    private Tokens tokens;
     //endregion
 
     // Android
@@ -77,16 +77,15 @@ public class ClockActivity extends AppCompatActivity {
             return;
         }
         else {
-            accessToken = intent.getStringExtra("ACCESS_TOKEN");
-            refreshToken = intent.getStringExtra("REFRESH_TOKEN");
-            Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Messages.trimText(accessToken, 10)));
-            Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Messages.trimText(refreshToken, 10)));
+            tokens = new Tokens(intent);
+            Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Messages.trimText(tokens.access.get(), 10)));
+            Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Messages.trimText(tokens.refresh.get(), 10)));
         }
 
         // Verificar acción de fichaje
         service = ApiClient.retrofit.create(ApiService.class);
 
-        service.getClockAction("Bearer "+accessToken).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
+        service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
             @Override
             protected Class<ClockActionErrorResponse> getErrorClass() {
                 return ClockActionErrorResponse.class;
