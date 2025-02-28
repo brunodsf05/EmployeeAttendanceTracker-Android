@@ -98,8 +98,7 @@ public class ClockActivity extends AppCompatActivity {
                 Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
                 latestClockAction = okBody.getAction();
-                buttonClock.setEnabled(latestClockAction.canClock());
-                buttonClock.setText(latestClockAction.getButtonText());
+                configureClockInterface();
             }
 
             @Override
@@ -133,6 +132,15 @@ public class ClockActivity extends AppCompatActivity {
         buttonClock.setOnClickListener(v -> {
             Log.d("CLICK", "Fichar");
         });
+    }
+    //endregion
+
+    //region Estado de fichaje
+    private void configureClockInterface() {
+        Log.d("GUI", String.format("Configurando la interfaz con: %s", latestClockAction.name()));
+
+        buttonClock.setEnabled(latestClockAction.canClock());
+        buttonClock.setText(latestClockAction.getButtonText());
     }
     //endregion
     //endregion
@@ -174,6 +182,21 @@ public class ClockActivity extends AppCompatActivity {
     //region OnClicks
     private void onMenuHistoryClick() {
         Log.d("CLICK", "Historial");
+
+        switch (latestClockAction) {
+            case WAIT: latestClockAction = ClockAction.FREEDAY; break;
+            case START: latestClockAction = ClockAction.WAIT; break;
+            case WORK: latestClockAction = ClockAction.START; break;
+            case EXIT: latestClockAction = ClockAction.WORK; break;
+            case RECOVER: latestClockAction = ClockAction.EXIT; break;
+            case NOTIFY_AUSENCE: latestClockAction = ClockAction.RECOVER; break;
+            case TOBEIN_WORK: latestClockAction = ClockAction.NOTIFY_AUSENCE; break;
+            case FREEDAY: latestClockAction = ClockAction.TOBEIN_WORK; break;
+        }
+        Log.d("ACTION", latestClockAction.name());
+
+        buttonClock.setEnabled(latestClockAction.canClock());
+        buttonClock.setText(latestClockAction.getButtonText());
     }
 
     private void onMenuConfigurationClick() {
