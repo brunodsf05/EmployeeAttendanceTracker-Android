@@ -126,6 +126,9 @@ public class ClockActivity extends AppCompatActivity {
         });
     }
 
+    //region Menú de tres puntos
+
+    //region Inicialización
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,8 +158,9 @@ public class ClockActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //endregion
 
-    // Acciones: Menú tres puntos
+    //region OnClicks
     private void onMenuHistoryClick() {
         Log.d("CLICK", "Historial");
     }
@@ -179,8 +183,9 @@ public class ClockActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+    //endregion
 
-    // Lógica
+    //region Lógica
 
     /**
      * Regresa a la pantalla de inicio de sesión.
@@ -192,4 +197,6 @@ public class ClockActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+    //endregion
+    //endregion
 }
