@@ -18,6 +18,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnClock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/feedbackTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Feedback"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/feedbackDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sugerencias/Explicaciones/Etc..." />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnClock"
@@ -27,8 +54,8 @@
         android:layout_marginEnd="64dp"
         android:autoSizeTextType="uniform"
         android:ellipsize="end"
-        android:paddingVertical="88dp"
         android:maxLines="1"
+        android:paddingVertical="88dp"
         android:text="@string/clock_btn_clock_in"
         android:textAllCaps="true"
         android:textStyle="bold"
