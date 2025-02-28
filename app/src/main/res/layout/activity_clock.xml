@@ -41,7 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Feedback"
                 android:textAllCaps="true"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -55,8 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:maxLines="2"
-                android:text="Sugerencias/Explicaciones/Etc..." />
+                android:maxLines="2" />
 
             <Space
                 android:layout_width="match_parent"
@@ -68,7 +66,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="3"
-                android:text="@string/clock_error_location_denied"
                 android:textColor="?attr/colorError" />
 
             <Space
@@ -80,7 +77,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/clock_error_location_cannotclock"
                 android:textColor="#FF9800" />
         </LinearLayout>
 
@@ -94,7 +90,6 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingVertical="88dp"
-            android:text="@string/clock_btn_clock_in"
             android:textAllCaps="true"
             android:textStyle="bold"
             app:cornerRadius="999dp"

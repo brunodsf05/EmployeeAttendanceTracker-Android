@@ -205,6 +205,7 @@ public class ClockActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.d("SWIPEREFRESH", "Actualizando ubicación y estado de fichaje");
             updateLocation();
+            configureClockInterface();
         });
 
         toolbar.setTitle(R.string.clock_title);
@@ -220,6 +221,11 @@ public class ClockActivity extends AppCompatActivity {
 
     //region Estado de fichaje
     private void configureClockInterface() {
+        if (latestClockAction == null) {
+            Log.e("GUI", "No se puede configurar la interfaz de fichaje con \"latestClockAction\" como null.");
+            return;
+        }
+
         Log.d("GUI", String.format("Configurando la interfaz con: %s", latestClockAction.name()));
 
         feedbackWarning.setVisibility(GONE);
@@ -250,7 +256,6 @@ public class ClockActivity extends AppCompatActivity {
             Log.e("LOCATION", "No se tienen permisos de ubicación.");
             Log.d("LOCATION", "Preguntando permisos de ubicación...");
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_REQUEST_CODE);
-            configureClockInterface();
             return;
         }
 
@@ -266,8 +271,6 @@ public class ClockActivity extends AppCompatActivity {
                         setFeedbackError("");
                         latestLocation = location;
                     }
-
-                    configureClockInterface();
                 });
     }
 
@@ -359,6 +362,7 @@ public class ClockActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(intent);
+        finish();
     }
     //endregion
     //endregion
