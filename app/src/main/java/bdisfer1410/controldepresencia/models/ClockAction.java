@@ -80,6 +80,23 @@ public enum ClockAction {
         return R.string.clock_lbl_error;
     }
 
+    public boolean doesLocationMatter() {
+        switch (this) {
+            case WAIT:
+            case WORK:
+            case RECOVER:
+            case NOTIFY_AUSENCE:
+            case FREEDAY:
+                return false;
+            case START:
+            case EXIT:
+            case TOBEIN_WORK:
+                return true;
+        }
+
+        return false;
+    }
+
     // Debug helpers
     public ClockAction getNext() {
         switch (this) {

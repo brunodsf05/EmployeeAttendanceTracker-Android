@@ -30,13 +30,19 @@
     <string name="clock_fdb_exit">¡Ahora sí, ya puedes salir!</string>
     <string name="clock_lbl_exit">Por que ya se terminó la jornada hoy.\nAcábala tocándo al botón…</string>
     <string name="clock_fdb_recover">¡Bien hecho!</string>
-    <string name="clock_lbl_recover">Ya terminastes la jornada de hoy. No tienes nada más que hacer…</string>
+    <string name="clock_lbl_recover">Ya terminastes la jornada de hoy.\nNo tienes nada más que hacer…</string>
     <string name="clock_fdb_notify_ausence">¡Oh no, has faltado!</string>
-    <string name="clock_lbl_notify_ausence">Parece ser que hoy no fuistes al trabajo. ¿Es un error? \nSi es así, presenta una incidencia.</string>
-    <string name="clock_fdb_tobein_work">No estás en la oficina…</string> <!-- Este mensaje no debería salir -->
-    <string name="clock_lbl_tobein_work">Aunque no podrás hacerlo ya que estás fuera del lugar de trabajo…</string> <!-- Este mensaje reemplazará a otro: Ejemplo. fdb=wait lbl=tobe_in_work -->
+    <string name="clock_lbl_notify_ausence">Parece ser que hoy no fuistes al trabajo. ¿Es un error?\nSi es así, presenta una incidencia.</string>
+    <string name="clock_fdb_tobein_work">No estás en la oficina…</string>
+    <string name="clock_lbl_tobein_work">O eso es lo que dice el servicio de ubicación…</string>
     <string name="clock_fdb_freeday">¡Calma que es tu día libre!</string>
-    <string name="clock_lbl_freeday">Si no es así presenta una incidencia. \nAunque no me chivaría la verdad…</string>
+    <string name="clock_lbl_freeday">Si no es así presenta una incidencia.\nAunque no me chivaría la verdad…</string>
+
+    <!-- Activity: Fichajes: Errores: Locales -->
+    <string name="clock_error_location_couldntfetch">No se pudo conseguir tu ubicación.\nPuede que tengas desactivado el GPS.\nActivalo y actualiza tu ubicación en el menú de arriba.</string>
+    <string name="clock_error_location_denied">No tienes habilitados los permisos de ubicación</string>
+    <string name="clock_error_location_preciserequired">Debes habilitar los permisos de ubicación precisa</string>
+    <string name="clock_error_location_cannotclock">No podrás fichar por que no pudimos sacar tu ubicación</string>
 
     <!-- Activity: Inicio de sesión: Views -->
     <string name="login_title">Iniciar sesión</string>
