@@ -2,6 +2,8 @@ package bdisfer1410.controldepresencia.api.auth;
 
 import com.google.gson.annotations.SerializedName;
 
+import bdisfer1410.controldepresencia.models.Tokens;
+
 public class AuthResponse {
     @SerializedName("access_token")
     private final String accessToken;
@@ -14,11 +16,7 @@ public class AuthResponse {
         this.refreshToken = refreshToken;
     }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
+    public Tokens getTokens() {
+        return new Tokens(accessToken, refreshToken);
     }
 }

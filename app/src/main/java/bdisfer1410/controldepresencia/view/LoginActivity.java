@@ -27,6 +27,7 @@ import bdisfer1410.controldepresencia.api.ApiClient;
 import bdisfer1410.controldepresencia.api.ProCallback;
 import bdisfer1410.controldepresencia.api.auth.AuthErrorResponse;
 import bdisfer1410.controldepresencia.api.auth.AuthResponse;
+import bdisfer1410.controldepresencia.models.Tokens;
 import bdisfer1410.controldepresencia.tools.Messages;
 import bdisfer1410.controldepresencia.api.auth.AuthRequest;
 import bdisfer1410.controldepresencia.api.ApiService;
@@ -153,16 +154,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onOkResponse(@NonNull AuthResponse okBody) {
-                String accessToken = okBody.getAccessToken();
-                String refreshToken = okBody.getRefreshToken();
+                Tokens tokens = okBody.getTokens();
 
                 Log.d("API", "¡Se recibieron los tokens!");
-                Log.d("TOKEN", String.format("El servidor devolvió el de acceso: %s...", Messages.trimText(accessToken, 10)));
-                Log.d("TOKEN", String.format("El servidor devolvió el de refresco: %s...", Messages.trimText(refreshToken, 10)));
+                Log.d("TOKEN", String.format("El servidor devolvió el token de %s", tokens.access.getDebug()));
+                Log.d("TOKEN", String.format("El servidor devolvió el token de %s", tokens.refresh.getDebug()));
 
                 Intent intent = new Intent(LoginActivity.this, ClockActivity.class);
-                intent.putExtra("ACCESS_TOKEN", accessToken);
-                intent.putExtra("REFRESH_TOKEN", refreshToken);
+                tokens.intoIntent(intent);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
