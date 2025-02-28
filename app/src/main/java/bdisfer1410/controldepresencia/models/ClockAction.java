@@ -50,6 +50,36 @@ public enum ClockAction {
         }
     }
 
+    public int getFeedbackTitle() {
+        switch (this) {
+            case WAIT: return R.string.clock_fdb_wait;
+            case START: return R.string.clock_fdb_start;
+            case WORK: return R.string.clock_fdb_work;
+            case EXIT: return R.string.clock_fdb_exit;
+            case RECOVER: return R.string.clock_fdb_recover;
+            case NOTIFY_AUSENCE: return R.string.clock_fdb_notify_ausence;
+            case TOBEIN_WORK: return R.string.clock_fdb_tobein_work;
+            case FREEDAY: return R.string.clock_fdb_freeday;
+        }
+
+        return R.string.clock_fdb_error;
+    }
+
+    public int getFeedbackDescription() {
+        switch (this) {
+            case WAIT: return R.string.clock_lbl_wait;
+            case START: return R.string.clock_lbl_start;
+            case WORK: return R.string.clock_lbl_work;
+            case EXIT: return R.string.clock_lbl_exit;
+            case RECOVER: return R.string.clock_lbl_recover;
+            case NOTIFY_AUSENCE: return R.string.clock_lbl_notify_ausence;
+            case TOBEIN_WORK: return R.string.clock_lbl_tobein_work;
+            case FREEDAY: return R.string.clock_lbl_freeday;
+        }
+
+        return R.string.clock_lbl_error;
+    }
+
     // Debug helpers
     public ClockAction getNext() {
         switch (this) {
