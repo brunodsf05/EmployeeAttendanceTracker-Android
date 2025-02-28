@@ -8,20 +8,20 @@
         android:id="@+id/mnu_history"
         android:icon="@drawable/ic_history"
         app:iconTint="?attr/colorOnSurface"
-        android:title="@string/main_mnu_history"
+        android:title="@string/clock_mnu_history"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/mnu_config"
         android:icon="@drawable/ic_settings"
         app:iconTint="?attr/colorOnSurface"
-        android:title="@string/main_mnu_settings"
+        android:title="@string/clock_mnu_settings"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/mnu_logout"
         android:icon="@drawable/ic_logout"
         app:iconTint="?attr/colorOnSurface"
-        android:title="@string/main_mnu_logout"
+        android:title="@string/clock_mnu_logout"
         app:showAsAction="never" />
 </menu>

@@ -29,7 +29,7 @@
         android:ellipsize="end"
         android:paddingVertical="88dp"
         android:maxLines="1"
-        android:text="@string/main_btn_clock_in"
+        android:text="@string/clock_btn_clock_in"
         android:textAllCaps="true"
         android:textStyle="bold"
         app:cornerRadius="999dp"
