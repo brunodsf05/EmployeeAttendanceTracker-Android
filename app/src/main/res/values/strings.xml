@@ -15,6 +15,7 @@
     <string name="clock_mnu_logout">Cerrar sesión</string>
     <string name="clock_btn_clock_in">Entrar</string>
     <string name="clock_btn_clock_out">Salir</string>
+    <string name="clock_btn_unknown">Error</string>
 
     <!-- Activity: Inicio de sesión: Views -->
     <string name="login_title">Iniciar sesión</string>

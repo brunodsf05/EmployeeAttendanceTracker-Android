@@ -27,7 +27,6 @@ import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionResponse;
 import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
-import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class ClockActivity extends AppCompatActivity {
@@ -52,7 +51,7 @@ public class ClockActivity extends AppCompatActivity {
         // Configuración inicial
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_clock);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -100,6 +99,7 @@ public class ClockActivity extends AppCompatActivity {
 
                 latestClockAction = okBody.getAction();
                 buttonClock.setEnabled(latestClockAction.canClock());
+                buttonClock.setText(latestClockAction.getButtonText());
             }
 
             @Override
@@ -127,7 +127,7 @@ public class ClockActivity extends AppCompatActivity {
     }
 
     private void configureViews() {
-        toolbar.setTitle(R.string.main_title);
+        toolbar.setTitle(R.string.clock_title);
         setSupportActionBar(toolbar);
 
         buttonClock.setOnClickListener(v -> {
