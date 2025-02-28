@@ -9,12 +9,12 @@
     <string name="app_error_anyservice_accesstokeninvalid">La sesión ha caducado</string>
 
     <!-- Activity: Fichajes: Views -->
-    <string name="main_title">Fichar</string>
-    <string name="main_mnu_history">Ver mis entradas y salidas</string>
-    <string name="main_mnu_settings">Configuración de usuario</string>
-    <string name="main_mnu_logout">Cerrar sesión</string>
-    <string name="main_btn_clock_in">Entrar</string>
-    <string name="main_btn_clock_out">Salir</string>
+    <string name="clock_title">Fichar</string>
+    <string name="clock_mnu_history">Ver mis entradas y salidas</string>
+    <string name="clock_mnu_settings">Configuración de usuario</string>
+    <string name="clock_mnu_logout">Cerrar sesión</string>
+    <string name="clock_btn_clock_in">Entrar</string>
+    <string name="clock_btn_clock_out">Salir</string>
 
     <!-- Activity: Inicio de sesión: Views -->
     <string name="login_title">Iniciar sesión</string>
@@ -33,7 +33,6 @@
     <string name="login_error_load_credentials">No se pudieron cargar las credenciales</string>
 
     <!-- Activity: Inicio de sesión: Errores: Servidor -->
-
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
     <string name="login_error_authservice_incorrectpassword">La contraseña no es válida</string>
 </resources>
