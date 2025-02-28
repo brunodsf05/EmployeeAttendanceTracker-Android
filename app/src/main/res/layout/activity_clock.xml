@@ -49,8 +49,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:maxLines="5"
+            android:maxLines="2"
             android:text="Sugerencias/Explicaciones/Etc..." />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <TextView
+            android:id="@+id/feedbackError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="@string/clock_error_location_denied"
+            android:textColor="?attr/colorError" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <TextView
+            android:id="@+id/feedbackWarning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/clock_error_location_cannotclock"
+            android:textColor="#FF9800" />
     </LinearLayout>
 
     <Button
