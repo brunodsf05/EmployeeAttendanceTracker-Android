@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -51,6 +52,7 @@ public class ClockActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Button buttonClock;
     private TextView feedbackTitle, feedbackDescription, feedbackError, feedbackWarning;
+    private SwipeRefreshLayout swipeRefreshLayout;
     //endregion
 
     //region Estado
@@ -111,6 +113,7 @@ public class ClockActivity extends AppCompatActivity {
         }
 
         // Verificar acción de fichaje
+        // TODO: MOVERLO A UN MÉTODO APARTE
         service = ApiClient.retrofit.create(ApiService.class);
 
         service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
@@ -189,6 +192,7 @@ public class ClockActivity extends AppCompatActivity {
     //region Configuración
     //region Inicial
     private void findViews() {
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         toolbar = findViewById(R.id.toolbar);
         buttonClock = findViewById(R.id.btnClock);
         feedbackTitle = findViewById(R.id.feedbackTitle);
@@ -198,6 +202,11 @@ public class ClockActivity extends AppCompatActivity {
     }
 
     private void configureViews() {
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            Log.d("SWIPEREFRESH", "Actualizando ubicación y estado de fichaje");
+            updateLocation();
+        });
+
         toolbar.setTitle(R.string.clock_title);
         setSupportActionBar(toolbar);
 
@@ -225,6 +234,8 @@ public class ClockActivity extends AppCompatActivity {
             buttonClock.setEnabled(ClockAction.TOBEIN_WORK.canClock());
             feedbackWarning.setVisibility(VISIBLE);
         }
+
+        swipeRefreshLayout.setRefreshing(false);
     }
     //endregion
     //endregion
