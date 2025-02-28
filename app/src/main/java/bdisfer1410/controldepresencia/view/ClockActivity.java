@@ -30,8 +30,9 @@ import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class ClockActivity extends AppCompatActivity {
-    // Variables
+    //region Variables
     //region Views
+    private Toolbar toolbar;
     private Button buttonClock;
     //endregion
 
@@ -42,11 +43,11 @@ public class ClockActivity extends AppCompatActivity {
     //region Datos
     private Tokens tokens;
     //endregion
+    //endregion
 
-    // Android
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Configurar márgenes
+        // Configuración inicial
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -56,18 +57,8 @@ public class ClockActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Vincular vistas a variables
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        buttonClock = findViewById(R.id.btnClock);
-
-        // Configurar la toolbar
-        toolbar.setTitle(R.string.main_title);
-        setSupportActionBar(toolbar);
-
-        // Configurar acciones
-        buttonClock.setOnClickListener(v -> {
-            Log.d("CLICK", "Fichar");
-        });
+        findViews();
+        configureViews();
 
         // Cargar el token
         Intent intent = getIntent();
@@ -78,8 +69,8 @@ public class ClockActivity extends AppCompatActivity {
         }
         else {
             tokens = new Tokens(intent);
-            Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Messages.trimText(tokens.access.get(), 10)));
-            Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Messages.trimText(tokens.refresh.get(), 10)));
+            Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.access.getDebug()));
+            Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.refresh.getDebug()));
         }
 
         // Verificar acción de fichaje
@@ -125,6 +116,24 @@ public class ClockActivity extends AppCompatActivity {
             }
         });
     }
+
+    //region Configuración
+    //region Inicial
+    private void findViews() {
+        toolbar = findViewById(R.id.toolbar);
+        buttonClock = findViewById(R.id.btnClock);
+    }
+
+    private void configureViews() {
+        toolbar.setTitle(R.string.main_title);
+        setSupportActionBar(toolbar);
+
+        buttonClock.setOnClickListener(v -> {
+            Log.d("CLICK", "Fichar");
+        });
+    }
+    //endregion
+    //endregion
 
     //region Menú de tres puntos
 
