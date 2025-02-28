@@ -39,7 +39,7 @@
     <string name="clock_lbl_freeday">Si no es así presenta una incidencia.\nAunque no me chivaría la verdad…</string>
 
     <!-- Activity: Fichajes: Errores: Locales -->
-    <string name="clock_error_location_couldntfetch">No se pudo conseguir tu ubicación.\nPuede que tengas desactivado el GPS.\nActivalo y actualiza tu ubicación en el menú de arriba.</string>
+    <string name="clock_error_location_couldntfetch">No se pudo conseguir tu ubicación.\nPuede que tengas desactivado el GPS.\nActivalo y luego desliza para abajo para recalibrar.</string>
     <string name="clock_error_location_denied">No tienes habilitados los permisos de ubicación</string>
     <string name="clock_error_location_preciserequired">Debes habilitar los permisos de ubicación precisa</string>
     <string name="clock_error_location_cannotclock">No podrás fichar por que no pudimos sacar tu ubicación</string>

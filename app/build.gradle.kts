@@ -47,4 +47,6 @@ dependencies {
     implementation (libs.okhttp)
     // Geolocalización
     implementation(libs.play.services.location)
+    // Refrescar con swipe
+    implementation(libs.swiperefreshlayout)
 }
