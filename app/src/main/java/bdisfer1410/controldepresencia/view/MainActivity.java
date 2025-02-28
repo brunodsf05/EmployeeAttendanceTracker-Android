@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -19,6 +20,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import bdisfer1410.controldepresencia.R;
+import bdisfer1410.controldepresencia.api.ApiClient;
+import bdisfer1410.controldepresencia.api.ApiService;
+import bdisfer1410.controldepresencia.api.ProCallback;
+import bdisfer1410.controldepresencia.api.action.ActionErrorResponse;
+import bdisfer1410.controldepresencia.api.action.ActionResponse;
+import bdisfer1410.controldepresencia.api.auth.AuthErrorResponse;
+import bdisfer1410.controldepresencia.api.auth.AuthResponse;
 import bdisfer1410.controldepresencia.tools.Messages;
 
 
@@ -26,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     // Variables
     //region Views
     private Button buttonClock;
+    //endregion
+
+    //region Estado
+    private ApiService service;
     //endregion
 
     //region Datos
@@ -36,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     // Android
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Configurar márgenes
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -63,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (intent == null) {
             Log.e("TOKEN", "No se recibió ningún token");
+            return;
         }
         else {
             accessToken = intent.getStringExtra("ACCESS_TOKEN");
@@ -70,6 +84,49 @@ public class MainActivity extends AppCompatActivity {
             Log.d("TOKEN", String.format("El Intent recibio el de acceso: %s...", Messages.trimText(accessToken, 10)));
             Log.d("TOKEN", String.format("El Intent recibio el de refresco: %s...", Messages.trimText(refreshToken, 10)));
         }
+
+        // Verificar acción de fichaje
+        service = ApiClient.retrofit.create(ApiService.class);
+
+        service.action("Bearer "+accessToken).enqueue(new ProCallback<ActionResponse, ActionErrorResponse>() {
+            @Override
+            protected Class<ActionErrorResponse> getErrorClass() {
+                return ActionErrorResponse.class;
+            }
+
+            @Override
+            public void beforeResponse() {
+                /* No hay preparación */
+            }
+
+            @Override
+            public void afterResponse() {
+                /* No hay finalización */
+            }
+
+            @Override
+            public void onOkResponse(@NonNull ActionResponse okBody) {
+                String action = okBody.getAction();
+
+                Log.d("API", String.format("¡Se recibió la acción %s!", action));
+
+            }
+
+            @Override
+            public void onErrorResponse(@NonNull ActionErrorResponse errorBody) {
+                Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
+            }
+
+            @Override
+            public void onNullResponse() {
+               Log.e("API", String.format("NullResponse: %s", getString(R.string.login_error_authservice_response)));
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("API", String.format("FailedResponse: %s", getString(R.string.login_error_authservice_connection)));
+            }
+        });
     }
 
     @SuppressLint("RestrictedApi")

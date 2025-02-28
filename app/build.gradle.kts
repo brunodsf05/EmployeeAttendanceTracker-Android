@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.gson)
+    implementation (libs.okhttp)
     // Geolocalización
     implementation(libs.play.services.location)
 }
