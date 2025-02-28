@@ -1,0 +1,31 @@
+package bdisfer1410.controldepresencia.api.action;
+
+import com.google.gson.annotations.SerializedName;
+
+public class ActionErrorResponse {
+    private static final String ERROR_KEYNAME_SUFFIX = "clock_error_actionservice_";
+    private String error;
+    @SerializedName("msg")
+    private String tokenError;
+
+    public ActionErrorResponse(String error, String tokenError) {
+        this.error = error;
+        this.tokenError = tokenError;
+    }
+
+    public boolean hasTokenError() {
+        return tokenError != null && !tokenError.isEmpty();
+    }
+
+    public String getError() {
+        return (hasTokenError())
+                ? "app_error_accesstoken_invalid"
+                : String.format("%s%s", ERROR_KEYNAME_SUFFIX, error);
+    }
+
+    public String getShortError() {
+        return (hasTokenError())
+                ? "app_error_accesstoken_invalid"
+                : error;
+    }
+}

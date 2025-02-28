@@ -4,6 +4,7 @@
 
     <!-- Aplicación: Errores -->
     <string name="app_error_anyservice_unknownkey">El servidor devolvió un error desconocido</string>
+    <string name="app_error_accesstoken_invalid">La sesión ha caducado</string>
 
     <!-- Activity: Fichajes: Views -->
     <string name="main_title">Fichar</string>
