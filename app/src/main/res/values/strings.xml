@@ -3,8 +3,10 @@
     <string name="app_name">Control De Presencia 2025</string>
 
     <!-- Aplicación: Errores -->
+    <string name="app_error_anyservice_connection">No se pudo contactar con el servidor</string>
+    <string name="app_error_anyservice_response">La respuesta del servidor es inválida</string>
     <string name="app_error_anyservice_unknownkey">El servidor devolvió un error desconocido</string>
-    <string name="app_error_accesstoken_invalid">La sesión ha caducado</string>
+    <string name="app_error_anyservice_accesstokeninvalid">La sesión ha caducado</string>
 
     <!-- Activity: Fichajes: Views -->
     <string name="main_title">Fichar</string>
@@ -31,8 +33,7 @@
     <string name="login_error_load_credentials">No se pudieron cargar las credenciales</string>
 
     <!-- Activity: Inicio de sesión: Errores: Servidor -->
-    <string name="login_error_authservice_connection">No se pudo contactar con el servidor</string>
-    <string name="login_error_authservice_response">La respuesta del servidor es inválida</string>
+
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
     <string name="login_error_authservice_incorrectpassword">La contraseña no es válida</string>
 </resources>

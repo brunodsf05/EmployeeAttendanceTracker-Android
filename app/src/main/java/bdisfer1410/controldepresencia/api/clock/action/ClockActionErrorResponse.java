@@ -1,14 +1,14 @@
-package bdisfer1410.controldepresencia.api.action;
+package bdisfer1410.controldepresencia.api.clock.action;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ActionErrorResponse {
+public class ClockActionErrorResponse {
     private static final String ERROR_KEYNAME_SUFFIX = "clock_error_actionservice_";
     private String error;
     @SerializedName("msg")
     private String tokenError;
 
-    public ActionErrorResponse(String error, String tokenError) {
+    public ClockActionErrorResponse(String error, String tokenError) {
         this.error = error;
         this.tokenError = tokenError;
     }
