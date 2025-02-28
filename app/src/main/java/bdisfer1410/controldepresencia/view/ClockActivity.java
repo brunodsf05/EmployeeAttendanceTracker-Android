@@ -201,6 +201,7 @@ public class ClockActivity extends AppCompatActivity {
 
     private void onMenuConfigurationClick() {
         Log.d("CLICK", "Configuración");
+        debugCycleClockAction(); // TODO: Quitarlo debug temporal
     }
 
     private void onMenuLogoutClick() {
@@ -233,4 +234,11 @@ public class ClockActivity extends AppCompatActivity {
     }
     //endregion
     //endregion
+
+    private void debugCycleClockAction() {
+        latestClockAction = latestClockAction.getNext();
+        Log.d("DEBUG", String.format("Cambiando latestClockAction a: %s", latestClockAction.name()));
+        toolbar.setTitle(latestClockAction.name());
+        configureClockInterface();
+    }
 }
