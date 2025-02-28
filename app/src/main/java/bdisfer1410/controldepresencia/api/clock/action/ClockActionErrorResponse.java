@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class ClockActionErrorResponse {
     private static final String ERROR_KEYNAME_SUFFIX = "clock_error_actionservice_";
-    private String error;
+    private final String error;
     @SerializedName("msg")
-    private String tokenError;
+    private final String tokenError;
 
     public ClockActionErrorResponse(String error, String tokenError) {
         this.error = error;
