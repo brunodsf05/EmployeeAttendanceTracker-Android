@@ -1,5 +1,7 @@
 package bdisfer1410.controldepresencia.models;
 
+import bdisfer1410.controldepresencia.R;
+
 public enum ClockAction {
     WAIT,
     START,
@@ -30,6 +32,21 @@ public enum ClockAction {
                 return true;
             default:
                 return false;
+        }
+    }
+
+    public int getButtonText() {
+        switch (this) {
+            case FREEDAY:
+            case WAIT:
+            case START:
+                return R.string.clock_btn_clock_in;
+            case WORK:
+            case EXIT:
+            case RECOVER:
+                return R.string.clock_btn_clock_out;
+            default:
+                return R.string.clock_btn_unknown;
         }
     }
 }
