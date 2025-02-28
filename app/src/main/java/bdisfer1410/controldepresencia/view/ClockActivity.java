@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class ClockActivity extends AppCompatActivity {
     //region Views
     private Toolbar toolbar;
     private Button buttonClock;
+    private TextView feedbackTitle, feedbackDescription;
     //endregion
 
     //region Estado
@@ -123,6 +125,8 @@ public class ClockActivity extends AppCompatActivity {
     private void findViews() {
         toolbar = findViewById(R.id.toolbar);
         buttonClock = findViewById(R.id.btnClock);
+        feedbackTitle = findViewById(R.id.feedbackTitle);
+        feedbackDescription = findViewById(R.id.feedbackDescription);
     }
 
     private void configureViews() {
@@ -141,6 +145,8 @@ public class ClockActivity extends AppCompatActivity {
 
         buttonClock.setEnabled(latestClockAction.canClock());
         buttonClock.setText(latestClockAction.getButtonText());
+        feedbackTitle.setText(latestClockAction.getFeedbackTitle());
+        feedbackDescription.setText(latestClockAction.getFeedbackDescription());
     }
     //endregion
     //endregion

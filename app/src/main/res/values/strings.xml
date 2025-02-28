@@ -17,6 +17,27 @@
     <string name="clock_btn_clock_out">Salir</string>
     <string name="clock_btn_unknown">Error</string>
 
+    <!-- Activity: Fichajes: Views: Feedback -->
+    <string name="clock_fdb_error">¡Vaya un error!</string>
+    <string name="clock_lbl_error">Esto es un error de la aplicación que no debería ser visto...</string>
+
+    <string name="clock_fdb_wait">¡Espera, que todavía falta!</string>
+    <string name="clock_lbl_wait">Aún no es hora de entrar a trabajar.</string>
+    <string name="clock_fdb_start">¡Vamos, es hora de entrar!</string>
+    <string name="clock_lbl_start">Ya inició tu jornada. Comiénzala tocándo al botón…</string>
+    <string name="clock_fdb_work">Estás trabajando…</string>
+    <string name="clock_lbl_work">De momento no puedes salir.\nEspera a que termine la jornada…</string>
+    <string name="clock_fdb_exit">¡Ahora sí, ya puedes salir!</string>
+    <string name="clock_lbl_exit">Por que ya se terminó la jornada hoy.\nAcábala tocándo al botón…</string>
+    <string name="clock_fdb_recover">¡Bien hecho!</string>
+    <string name="clock_lbl_recover">Ya terminastes la jornada de hoy. No tienes nada más que hacer…</string>
+    <string name="clock_fdb_notify_ausence">¡Oh no, has faltado!</string>
+    <string name="clock_lbl_notify_ausence">Parece ser que hoy no fuistes al trabajo. ¿Es un error? \nSi es así, presenta una incidencia.</string>
+    <string name="clock_fdb_tobein_work">No estás en la oficina…</string> <!-- Este mensaje no debería salir -->
+    <string name="clock_lbl_tobein_work">Aunque no podrás hacerlo ya que estás fuera del lugar de trabajo…</string> <!-- Este mensaje reemplazará a otro: Ejemplo. fdb=wait lbl=tobe_in_work -->
+    <string name="clock_fdb_freeday">¡Calma que es tu día libre!</string>
+    <string name="clock_lbl_freeday">Si no es así presenta una incidencia. \nAunque no me chivaría la verdad…</string>
+
     <!-- Activity: Inicio de sesión: Views -->
     <string name="login_title">Iniciar sesión</string>
     <string name="login_subtitle">Introduzca sus credenciales</string>

@@ -22,6 +22,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnClock"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,11 +40,16 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
         <TextView
             android:id="@+id/feedbackDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:maxLines="5"
             android:text="Sugerencias/Explicaciones/Etc..." />
     </LinearLayout>
 
