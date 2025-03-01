@@ -105,7 +105,7 @@ public class ClockActivity extends AppCompatActivity {
             latestClockAction = (ClockAction) savedInstanceState.getSerializable(KEY_LATESTCLOCKSTATE);
             if (latestClockAction != null) {
                 Log.d("RESTORATION", String.format("Se restauró latestClockAction a: %s", latestClockAction.name()));
-                configureClockInterface();
+                configureInterface();
                 return;
             }
             else {
@@ -165,7 +165,7 @@ public class ClockActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.d("SWIPEREFRESH", "Actualizando ubicación y estado de fichaje");
             updateLocation();
-            configureClockInterface();
+            configureInterface();
         });
 
         toolbar.setTitle(R.string.clock_title);
@@ -180,7 +180,7 @@ public class ClockActivity extends AppCompatActivity {
     //endregion
 
     //region Estado de fichaje
-    private void configureClockInterface() {
+    private void configureInterface() {
         if (latestClockAction == null) {
             Log.e("GUI", "No se puede configurar la interfaz de fichaje con \"latestClockAction\" como null.");
             return;
@@ -229,7 +229,7 @@ public class ClockActivity extends AppCompatActivity {
                 Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
                 latestClockAction = okBody.getAction();
-                configureClockInterface();
+                configureInterface();
             }
 
             @Override
@@ -362,6 +362,6 @@ public class ClockActivity extends AppCompatActivity {
         latestClockAction = latestClockAction.getNext();
         Log.d("DEBUG", String.format("Cambiando latestClockAction a: %s", latestClockAction.name()));
         toolbar.setTitle(latestClockAction.name());
-        configureClockInterface();
+        configureInterface();
     }
 }
