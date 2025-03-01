@@ -193,9 +193,9 @@ public class ClockActivity extends AppCompatActivity {
         feedbackTitle.setText(latestClockAction.getFeedbackTitle());
         feedbackDescription.setText(latestClockAction.getFeedbackDescription());
 
-        boolean canApplyNoLocationStyiling = latestLocation == null && latestClockAction.doesLocationMatter();
+        boolean canApplyNoLocationStyling = latestLocation == null && latestClockAction.doesLocationMatter();
 
-        if (canApplyNoLocationStyiling) {
+        if (canApplyNoLocationStyling) {
             buttonClock.setEnabled(ClockAction.TOBEIN_WORK.canClock());
             feedbackWarning.setVisibility(VISIBLE);
         }
