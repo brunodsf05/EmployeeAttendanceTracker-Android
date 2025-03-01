@@ -81,6 +81,7 @@ public class ClockActivity extends AppCompatActivity {
 
         findViews();
         configureViews();
+        service = ApiClient.retrofit.create(ApiService.class);
 
         // Manejar la geolocalización
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -113,48 +114,7 @@ public class ClockActivity extends AppCompatActivity {
         }
 
         // Verificar acción de fichaje
-        // TODO: MOVERLO A UN MÉTODO APARTE
-        service = ApiClient.retrofit.create(ApiService.class);
-
-        service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
-            @Override
-            protected Class<ClockActionErrorResponse> getErrorClass() {
-                return ClockActionErrorResponse.class;
-            }
-
-            @Override
-            public void beforeResponse() {
-                /* No hay preparación */
-            }
-
-            @Override
-            public void afterResponse() {
-                /* No hay finalización */
-            }
-
-            @Override
-            public void onOkResponse(@NonNull ClockActionResponse okBody) {
-                Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
-
-                latestClockAction = okBody.getAction();
-                configureClockInterface();
-            }
-
-            @Override
-            public void onErrorResponse(@NonNull ClockActionErrorResponse errorBody) {
-                Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
-            }
-
-            @Override
-            public void onNullResponse() {
-               Log.e("API", String.format("NullResponse: %s", getString(R.string.app_error_anyservice_response)));
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e("API", String.format("FailedResponse: %s", getString(R.string.app_error_anyservice_connection)));
-            }
-        });
+        updateClockAction();
     }
 
     @Override
@@ -244,6 +204,50 @@ public class ClockActivity extends AppCompatActivity {
         swipeRefreshLayout.setRefreshing(false);
     }
     //endregion
+    //endregion
+
+    //region API
+    private void updateClockAction() {
+        service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
+            @Override
+            protected Class<ClockActionErrorResponse> getErrorClass() {
+                return ClockActionErrorResponse.class;
+            }
+
+            @Override
+            public void beforeResponse() {
+                /* No hay preparación */
+            }
+
+            @Override
+            public void afterResponse() {
+                /* No hay finalización */
+            }
+
+            @Override
+            public void onOkResponse(@NonNull ClockActionResponse okBody) {
+                Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
+
+                latestClockAction = okBody.getAction();
+                configureClockInterface();
+            }
+
+            @Override
+            public void onErrorResponse(@NonNull ClockActionErrorResponse errorBody) {
+                Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
+            }
+
+            @Override
+            public void onNullResponse() {
+                Log.e("API", String.format("NullResponse: %s", getString(R.string.app_error_anyservice_response)));
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("API", String.format("FailedResponse: %s", getString(R.string.app_error_anyservice_connection)));
+            }
+        });
+    }
     //endregion
 
     //region Geolocalización
