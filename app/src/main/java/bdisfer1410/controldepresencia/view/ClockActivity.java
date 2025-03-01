@@ -298,15 +298,17 @@ public class ClockActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Obtener el ID del elemento seleccionado
         int id = item.getItemId();
+        boolean hasCalledFunction = true;
 
              if (id == R.id.mnu_history) onMenuHistoryClick();
         else if (id == R.id.mnu_config ) onMenuConfigurationClick();
         else if (id == R.id.mnu_logout ) onMenuLogoutClick();
         else {
             Log.e("CLICK", "MenuItem sin implementar");
+            hasCalledFunction = false;
         }
 
-        return super.onOptionsItemSelected(item);
+        return hasCalledFunction || super.onOptionsItemSelected(item);
     }
     //endregion
 
