@@ -313,21 +313,6 @@ public class ClockActivity extends AppCompatActivity {
     //region OnClicks
     private void onMenuHistoryClick() {
         Log.d("CLICK", "Historial");
-
-        switch (latestClockAction) {
-            case WAIT: latestClockAction = ClockAction.FREEDAY; break;
-            case START: latestClockAction = ClockAction.WAIT; break;
-            case WORK: latestClockAction = ClockAction.START; break;
-            case EXIT: latestClockAction = ClockAction.WORK; break;
-            case RECOVER: latestClockAction = ClockAction.EXIT; break;
-            case NOTIFY_AUSENCE: latestClockAction = ClockAction.RECOVER; break;
-            case TOBEIN_WORK: latestClockAction = ClockAction.NOTIFY_AUSENCE; break;
-            case FREEDAY: latestClockAction = ClockAction.TOBEIN_WORK; break;
-        }
-        Log.d("ACTION", latestClockAction.name());
-
-        buttonClock.setEnabled(latestClockAction.canClock());
-        buttonClock.setText(latestClockAction.getButtonText());
     }
 
     private void onMenuConfigurationClick() {
