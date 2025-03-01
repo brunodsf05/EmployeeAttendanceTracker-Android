@@ -165,7 +165,6 @@ public class ClockActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.d("SWIPEREFRESH", "Actualizando ubicación y estado de fichaje");
             updateLocation();
-            configureInterface();
         });
 
         toolbar.setTitle(R.string.clock_title);
@@ -260,6 +259,7 @@ public class ClockActivity extends AppCompatActivity {
             Log.e("LOCATION", "No se tienen permisos de ubicación.");
             Log.d("LOCATION", "Preguntando permisos de ubicación...");
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_REQUEST_CODE);
+            configureInterface();
             return;
         }
 
@@ -275,6 +275,7 @@ public class ClockActivity extends AppCompatActivity {
                         setFeedbackError("");
                         latestLocation = location;
                     }
+                    configureInterface();
                 });
     }
 
