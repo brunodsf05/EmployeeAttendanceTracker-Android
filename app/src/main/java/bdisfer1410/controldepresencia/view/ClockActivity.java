@@ -47,19 +47,20 @@ public class ClockActivity extends AppCompatActivity {
     private static final int PERMISSION_LOCATION_REQUEST_CODE = 1;
     private static final String KEY_LATESTCLOCKSTATE = "LATEST_CLOCK_STATE";
     //endregion
-
     //region Views
     private Toolbar toolbar;
     private Button buttonClock;
     private TextView feedbackTitle, feedbackDescription, feedbackError, feedbackWarning;
     private SwipeRefreshLayout swipeRefreshLayout;
     //endregion
-
     //region Estado
     private ApiService service;
     private FusedLocationProviderClient fusedLocationClient;
     //endregion
-
+    //region Semáforos
+    private boolean isUpdatingLocation = false;
+    private boolean isUpdatingClockAction = false;
+    //endregion
     //region Datos
     private Tokens tokens;
     private ClockAction latestClockAction;
@@ -180,33 +181,47 @@ public class ClockActivity extends AppCompatActivity {
 
     //region Estado de fichaje
     private void configureInterface() {
-        if (latestClockAction == null) {
-            Log.e("GUI", "No se puede configurar la interfaz de fichaje con \"latestClockAction\" como null.");
-            return;
+        // Cambios principales
+        boolean canApplyClockActionStyling = latestClockAction != null;
+
+        Log.d("GUI", String.format("Configurando la interfaz con: \"latestClockAction\"=%s", (canApplyClockActionStyling) ? latestClockAction.name() : "null"));
+
+        if (canApplyClockActionStyling) {
+            feedbackWarning.setVisibility(GONE);
+            buttonClock.setEnabled(latestClockAction.canClock());
+            buttonClock.setText(latestClockAction.getButtonText());
+            feedbackTitle.setText(latestClockAction.getFeedbackTitle());
+            feedbackDescription.setText(latestClockAction.getFeedbackDescription());
         }
 
-        Log.d("GUI", String.format("Configurando la interfaz con: %s", latestClockAction.name()));
-
-        feedbackWarning.setVisibility(GONE);
-        buttonClock.setEnabled(latestClockAction.canClock());
-        buttonClock.setText(latestClockAction.getButtonText());
-        feedbackTitle.setText(latestClockAction.getFeedbackTitle());
-        feedbackDescription.setText(latestClockAction.getFeedbackDescription());
-
+        // Parches de ubicación
         boolean canApplyNoLocationStyling = latestLocation == null && latestClockAction.doesLocationMatter();
+
+        Log.d("GUI", String.format("¿Se aplicarán los parches de GPS no válido? %b", canApplyNoLocationStyling));
 
         if (canApplyNoLocationStyling) {
             buttonClock.setEnabled(ClockAction.TOBEIN_WORK.canClock());
             feedbackWarning.setVisibility(VISIBLE);
         }
 
-        swipeRefreshLayout.setRefreshing(false);
+        // Manejo del símbolo de progreso
+        boolean isUpdating = isUpdatingLocation || isUpdatingClockAction;
+
+        Log.d("GUI", String.format("¿Se mantendrá el spinner de refresh? %b", isUpdating));
+        Log.d("REFRESHPROGRESS", "INICIO");
+        Log.d("REFRESHPROGRESS", String.format("¿isUpdatingLocation? %b", isUpdatingLocation));
+        Log.d("REFRESHPROGRESS", String.format("¿isUpdatingClockAction? %b", isUpdatingClockAction));
+
+        swipeRefreshLayout.setRefreshing(isUpdating);
+
     }
     //endregion
     //endregion
 
     //region API
     private void updateClockAction() {
+        isUpdatingClockAction = true;
+
         service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
             @Override
             protected Class<ClockActionErrorResponse> getErrorClass() {
@@ -215,7 +230,8 @@ public class ClockActivity extends AppCompatActivity {
 
             @Override
             public void beforeResponse() {
-                /* No hay preparación */
+                // Ya se recibió la respuesta
+                isUpdatingClockAction = false;
             }
 
             @Override
@@ -251,6 +267,7 @@ public class ClockActivity extends AppCompatActivity {
 
     //region Geolocalización
     private void updateLocation() {
+        isUpdatingLocation = true;
         latestLocation = null;
 
         boolean doesntHasLocationPermissions = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED;
@@ -259,6 +276,7 @@ public class ClockActivity extends AppCompatActivity {
             Log.e("LOCATION", "No se tienen permisos de ubicación.");
             Log.d("LOCATION", "Preguntando permisos de ubicación...");
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_REQUEST_CODE);
+            isUpdatingLocation = false;
             configureInterface();
             return;
         }
@@ -275,6 +293,7 @@ public class ClockActivity extends AppCompatActivity {
                         setFeedbackError("");
                         latestLocation = location;
                     }
+                    isUpdatingLocation = false;
                     configureInterface();
                 });
     }
