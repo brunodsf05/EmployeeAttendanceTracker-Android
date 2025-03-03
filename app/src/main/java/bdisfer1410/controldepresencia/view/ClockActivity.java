@@ -41,6 +41,7 @@ import bdisfer1410.controldepresencia.api.clock.send.ClockSendErrorResponse;
 import bdisfer1410.controldepresencia.api.clock.send.ClockSendRequest;
 import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
+import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class ClockActivity extends AppCompatActivity {
@@ -199,7 +200,7 @@ public class ClockActivity extends AppCompatActivity {
         }
 
         // Parches de ubicación
-        boolean canApplyNoLocationStyling = latestLocation == null && latestClockAction.doesLocationMatter();
+        boolean canApplyNoLocationStyling = latestLocation == null && latestClockAction != null && latestClockAction.doesLocationMatter();
 
         Log.d("GUI", String.format("¿Se aplicarán los parches de GPS no válido? %b", canApplyNoLocationStyling));
 
@@ -321,6 +322,11 @@ public class ClockActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(@NonNull ClockSendErrorResponse errorBody) {
                 Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
+                setFeedbackError(                        Messages.fromKey(
+                        ClockActivity.this,
+                        errorBody.getError(),
+                        R.string.app_error_anyservice_unknownkey
+                ));
             }
 
             @Override
