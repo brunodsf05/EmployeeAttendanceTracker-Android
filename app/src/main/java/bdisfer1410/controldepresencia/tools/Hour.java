@@ -14,4 +14,10 @@ public class Hour {
                 ? INVALID
                 : time.format(FORMATTER);
     }
+
+    public static LocalTime parse(String time) {
+        return (time == null)
+                ? null
+                : LocalTime.parse(time, FORMATTER);
+    }
 }
