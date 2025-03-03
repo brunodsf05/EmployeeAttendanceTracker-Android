@@ -37,6 +37,8 @@ import bdisfer1410.controldepresencia.api.ApiService;
 import bdisfer1410.controldepresencia.api.ProCallback;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
 import bdisfer1410.controldepresencia.api.clock.ClockResponse;
+import bdisfer1410.controldepresencia.api.clock.send.ClockSendErrorResponse;
+import bdisfer1410.controldepresencia.api.clock.send.ClockSendRequest;
 import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
 
@@ -175,6 +177,7 @@ public class ClockActivity extends AppCompatActivity {
 
         buttonClock.setOnClickListener(v -> {
             Log.d("CLICK", "Fichar");
+            updateClockSend();
         });
     }
     //endregion
@@ -219,6 +222,10 @@ public class ClockActivity extends AppCompatActivity {
     //endregion
 
     //region API
+
+    /**
+     * Le pregunta al servidor si debe o no fichar y los horario de entrada y salida.
+     */
     private void updateClockAction() {
         isUpdatingClockAction = true;
 
@@ -249,6 +256,67 @@ public class ClockActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(@NonNull ClockActionErrorResponse errorBody) {
+                Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
+            }
+
+            @Override
+            public void onNullResponse() {
+                Log.e("API", String.format("NullResponse: %s", getString(R.string.app_error_anyservice_response)));
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("API", String.format("FailedResponse: %s", getString(R.string.app_error_anyservice_connection)));
+            }
+        });
+    }
+
+    /**
+     * Le manda al servidor una petición de fichaje y recibe el siguiente estado a estar:
+     * Ejemplo: Ficho desde START. Estaré en WORK.
+     */
+    private void updateClockSend() {
+        //Preparar interfaz
+        isUpdatingClockAction = true;
+        configureInterface();
+        buttonClock.setEnabled(false);
+
+        // Crear solicitud
+        double latitude = latestLocation.getLatitude();
+        double longitude = latestLocation.getLongitude();
+        Log.d("API", String.format("Consiguiendo latitud: %f", latitude));
+        Log.d("API", String.format("Consiguiendo longitud: %f", latitude));
+
+        ClockSendRequest clockSendRequest = new ClockSendRequest(latitude, longitude);
+
+        // Recibir respuesta
+        service.sendClockRequest(tokens.access.getHeader(), clockSendRequest).enqueue(new ProCallback<ClockResponse, ClockSendErrorResponse>() {
+            @Override
+            protected Class<ClockSendErrorResponse> getErrorClass() {
+                return ClockSendErrorResponse.class;
+            }
+
+            @Override
+            public void beforeResponse() {
+                // Ya se recibió la respuesta
+                isUpdatingClockAction = false;
+            }
+
+            @Override
+            public void afterResponse() {
+                configureInterface();
+            }
+
+            @Override
+            public void onOkResponse(@NonNull ClockResponse okBody) {
+                Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
+
+                latestClockAction = okBody.getAction();
+
+            }
+
+            @Override
+            public void onErrorResponse(@NonNull ClockSendErrorResponse errorBody) {
                 Log.e("API", String.format("ErrorResponse: %s", errorBody.getShortError()));
             }
 
