@@ -309,7 +309,7 @@ public class ClockActivity extends AppCompatActivity {
 
             @Override
             public void afterResponse() {
-                configureInterface();
+                updateClockAction();
             }
 
             @Override
