@@ -285,7 +285,7 @@ public class ClockActivity extends AppCompatActivity {
         double latitude = latestLocation.getLatitude();
         double longitude = latestLocation.getLongitude();
         Log.d("API", String.format("Consiguiendo latitud: %f", latitude));
-        Log.d("API", String.format("Consiguiendo longitud: %f", latitude));
+        Log.d("API", String.format("Consiguiendo longitud: %f", longitude));
 
         ClockSendRequest clockSendRequest = new ClockSendRequest(latitude, longitude);
 
