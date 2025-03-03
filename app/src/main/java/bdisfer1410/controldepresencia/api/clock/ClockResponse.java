@@ -3,6 +3,7 @@ package bdisfer1410.controldepresencia.api.clock;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import bdisfer1410.controldepresencia.models.ClockAction;
@@ -38,14 +39,14 @@ public class ClockResponse {
         return ClockAction.fromString(action);
     }
 
-    private LocalDateTime parseHour(String hour) {
-        return LocalDateTime.parse(hour, DateTimeFormatter.ISO_DATE_TIME);
+    private LocalTime parseHour(String hour) {
+        return LocalTime.parse(hour, DateTimeFormatter.ISO_DATE_TIME);
     }
-    public LocalDateTime getStartHour() {
+    public LocalTime getStartHour() {
         return parseHour(startHourString);
     }
 
-    public LocalDateTime getExitHour() {
+    public LocalTime getExitHour() {
         return parseHour(exitHourString);
     }
 }
