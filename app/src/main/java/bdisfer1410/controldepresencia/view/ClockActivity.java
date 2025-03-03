@@ -36,7 +36,7 @@ import bdisfer1410.controldepresencia.api.ApiClient;
 import bdisfer1410.controldepresencia.api.ApiService;
 import bdisfer1410.controldepresencia.api.ProCallback;
 import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
-import bdisfer1410.controldepresencia.api.clock.action.ClockActionResponse;
+import bdisfer1410.controldepresencia.api.clock.ClockResponse;
 import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
 
@@ -222,7 +222,7 @@ public class ClockActivity extends AppCompatActivity {
     private void updateClockAction() {
         isUpdatingClockAction = true;
 
-        service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockActionResponse, ClockActionErrorResponse>() {
+        service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockResponse, ClockActionErrorResponse>() {
             @Override
             protected Class<ClockActionErrorResponse> getErrorClass() {
                 return ClockActionErrorResponse.class;
@@ -240,7 +240,7 @@ public class ClockActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onOkResponse(@NonNull ClockActionResponse okBody) {
+            public void onOkResponse(@NonNull ClockResponse okBody) {
                 Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
                 latestClockAction = okBody.getAction();

@@ -1,11 +1,11 @@
-package bdisfer1410.controldepresencia.api.clock.action;
+package bdisfer1410.controldepresencia.api.clock;
 
 import bdisfer1410.controldepresencia.models.ClockAction;
 
-public class ClockActionResponse {
+public class ClockResponse {
     private final String action;
 
-    public ClockActionResponse(String action) {
+    public ClockResponse(String action) {
         this.action = action;
     }
 
