@@ -31,6 +31,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.time.LocalTime;
+
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.api.ApiClient;
 import bdisfer1410.controldepresencia.api.ApiService;
@@ -41,6 +43,7 @@ import bdisfer1410.controldepresencia.api.clock.send.ClockSendErrorResponse;
 import bdisfer1410.controldepresencia.api.clock.send.ClockSendRequest;
 import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
+import bdisfer1410.controldepresencia.tools.Hour;
 import bdisfer1410.controldepresencia.tools.Messages;
 
 
@@ -54,6 +57,7 @@ public class ClockActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Button buttonClock;
     private TextView feedbackTitle, feedbackDescription, feedbackError, feedbackWarning;
+    private TextView infoStartHour, infoExitHour;
     private SwipeRefreshLayout swipeRefreshLayout;
     //endregion
     //region Estado
@@ -68,6 +72,8 @@ public class ClockActivity extends AppCompatActivity {
     private Tokens tokens;
     private ClockAction latestClockAction;
     private Location latestLocation;
+    private LocalTime startTime;
+    private LocalTime exitTime;
     //endregion
     //endregion
 
@@ -163,6 +169,8 @@ public class ClockActivity extends AppCompatActivity {
         feedbackDescription = findViewById(R.id.feedbackDescription);
         feedbackError = findViewById(R.id.feedbackError);
         feedbackWarning = findViewById(R.id.feedbackWarning);
+        infoStartHour = findViewById(R.id.infoStartHour);
+        infoExitHour = findViewById(R.id.infoExitHour);
     }
 
     private void configureViews() {
@@ -208,6 +216,10 @@ public class ClockActivity extends AppCompatActivity {
             buttonClock.setEnabled(ClockAction.TOBEIN_WORK.canClock());
             feedbackWarning.setVisibility(VISIBLE);
         }
+
+        // Configurar las horas de entrada y salida
+        infoStartHour.setText(Hour.format(startTime));
+        infoExitHour.setText(Hour.format(exitTime));
 
         // Manejo del símbolo de progreso
         boolean isUpdating = isUpdatingLocation || isUpdatingClockAction;
@@ -256,6 +268,8 @@ public class ClockActivity extends AppCompatActivity {
                 Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
                 latestClockAction = okBody.getAction();
+                startTime = okBody.getStartHour();
+                exitTime = okBody.getExitHour();
                 configureInterface();
             }
 
