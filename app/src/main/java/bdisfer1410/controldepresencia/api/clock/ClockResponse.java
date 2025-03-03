@@ -40,7 +40,8 @@ public class ClockResponse {
     }
 
     private LocalTime parseHour(String hour) {
-        return LocalTime.parse(hour, DateTimeFormatter.ISO_DATE_TIME);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return LocalTime.parse(hour, formatter);
     }
     public LocalTime getStartHour() {
         return parseHour(startHourString);
