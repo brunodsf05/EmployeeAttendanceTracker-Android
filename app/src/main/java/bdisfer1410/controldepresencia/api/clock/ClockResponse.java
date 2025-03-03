@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import bdisfer1410.controldepresencia.models.ClockAction;
+import bdisfer1410.controldepresencia.tools.Hour;
 
 public class ClockResponse {
     private final String action;
@@ -39,15 +40,11 @@ public class ClockResponse {
         return ClockAction.fromString(action);
     }
 
-    private LocalTime parseHour(String hour) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return LocalTime.parse(hour, formatter);
-    }
     public LocalTime getStartHour() {
-        return parseHour(startHourString);
+        return Hour.parse(startHourString);
     }
 
     public LocalTime getExitHour() {
-        return parseHour(exitHourString);
+        return Hour.parse(exitHourString);
     }
 }
