@@ -227,8 +227,11 @@ public class ClockActivity extends AppCompatActivity {
      * Le pregunta al servidor si debe o no fichar y los horario de entrada y salida.
      */
     private void updateClockAction() {
+        //Preparar interfaz
         isUpdatingClockAction = true;
+        configureInterface();
 
+        // Crear solicitud
         service.getClockAction(tokens.access.getHeader()).enqueue(new ProCallback<ClockResponse, ClockActionErrorResponse>() {
             @Override
             protected Class<ClockActionErrorResponse> getErrorClass() {
@@ -312,7 +315,6 @@ public class ClockActivity extends AppCompatActivity {
                 Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
                 latestClockAction = okBody.getAction();
-
             }
 
             @Override
