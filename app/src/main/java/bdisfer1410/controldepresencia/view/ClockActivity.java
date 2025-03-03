@@ -168,6 +168,7 @@ public class ClockActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.d("SWIPEREFRESH", "Actualizando ubicación y estado de fichaje");
             updateLocation();
+            updateClockAction();
         });
 
         toolbar.setTitle(R.string.clock_title);
