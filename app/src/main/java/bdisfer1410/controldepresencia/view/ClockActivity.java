@@ -256,6 +256,7 @@ public class ClockActivity extends AppCompatActivity {
             public void beforeResponse() {
                 // Ya se recibió la respuesta
                 isUpdatingClockAction = false;
+                configureInterface();
             }
 
             @Override
@@ -270,7 +271,7 @@ public class ClockActivity extends AppCompatActivity {
                 latestClockAction = okBody.getAction();
                 startTime = okBody.getStartHour();
                 exitTime = okBody.getExitHour();
-                configureInterface();
+
             }
 
             @Override
