@@ -44,6 +44,18 @@
     <string name="clock_error_location_preciserequired">Debes habilitar los permisos de ubicación precisa</string>
     <string name="clock_error_location_cannotclock">No podrás fichar por que no pudimos sacar tu ubicación</string>
 
+    <!-- Activity: Fichajes: Errores: Tipo a realizar -->
+    <string name="clock_error_actionservice_usernotfound">No se encontró al trabajador</string>
+    <string name="clock_error_actionservice_horarionotfound">El trabajador no tiene un horario</string>
+
+    <!-- Activity: Fichajes: Errores: Solicitud de entrada/salida -->
+    <string name="clock_error_sendservice_usernotfound">No se encontró al trabajador</string>
+    <string name="clock_error_sendservice_horarionotfound">El trabajador no tiene un horario</string>
+    <string name="clock_error_sendservice_empresanotfound">El trabajador no tiene empresa</string>
+    <string name="clock_error_sendservice_invalidlocation">Hubo un error al procesar tu ubicación</string>
+    <string name="clock_error_sendservice_isnotinside">No estás dentro de la empresa</string>
+    <string name="clock_error_sendservice_couldntclock">No se pudo realizar el fichaje</string>
+
     <!-- Activity: Inicio de sesión: Views -->
     <string name="login_title">Iniciar sesión</string>
     <string name="login_subtitle">Introduzca sus credenciales</string>
