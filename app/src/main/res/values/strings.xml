@@ -39,6 +39,14 @@
     <string name="clock_lbl_freeday">Si no es así presenta una incidencia.\nAunque no me chivaría la verdad…</string>
     <string name="clock_lbl_error_connection">No se pudo contactar con el servidor.\nReintenta la conexión deslizando para abajo…</string>
 
+    <!-- Activity: Fichajes: Views: Horario -->
+    <string name="clock_inf_wait">Espere</string>
+    <string name="clock_inf_start">Entrada</string>
+    <string name="clock_inf_work">Trabajo</string>
+    <string name="clock_inf_exit">Salida</string>
+    <string name="clock_inf_recover">Libre</string>
+    <string name="clock_inf_unknowntime">…</string>
+
     <!-- Activity: Fichajes: Errores: Locales -->
     <string name="clock_error_location_couldntfetch">No se pudo conseguir tu ubicación.\nPuede que tengas desactivado el GPS.\nActivalo y luego desliza para abajo para recalibrar.</string>
     <string name="clock_error_location_denied">No tienes habilitados los permisos de ubicación</string>

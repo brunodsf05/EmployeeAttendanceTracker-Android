@@ -205,6 +205,8 @@ public class ClockActivity extends AppCompatActivity {
             buttonClock.setText(latestClockAction.getButtonText());
             feedbackTitle.setText(latestClockAction.getFeedbackTitle());
             feedbackDescription.setText(latestClockAction.getFeedbackDescription());
+
+
         }
 
         // Parches de ubicación
