@@ -283,6 +283,7 @@ public class ClockActivity extends AppCompatActivity {
             @Override
             public void onNullResponse() {
                 Log.e("API", String.format("NullResponse: %s", getString(R.string.app_error_anyservice_response)));
+                latestClockAction = ClockAction.ERROR_UNKNOWN;
             }
 
             @Override
