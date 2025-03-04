@@ -335,6 +335,8 @@ public class ClockActivity extends AppCompatActivity {
                 Log.d("API", String.format("¡Se recibió la acción %s!", okBody.getActionString()));
 
                 latestClockAction = okBody.getAction();
+
+                setFeedbackError("");
             }
 
             @Override
