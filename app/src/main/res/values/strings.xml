@@ -37,6 +37,7 @@
     <string name="clock_lbl_tobein_work">O eso es lo que dice el servicio de ubicación…</string>
     <string name="clock_fdb_freeday">¡Calma que es tu día libre!</string>
     <string name="clock_lbl_freeday">Si no es así presenta una incidencia.\nAunque no me chivaría la verdad…</string>
+    <string name="clock_lbl_error_connection">No se pudo contactar con el servidor.\nReintenta la conexión deslizando para abajo…</string>
 
     <!-- Activity: Fichajes: Errores: Locales -->
     <string name="clock_error_location_couldntfetch">No se pudo conseguir tu ubicación.\nPuede que tengas desactivado el GPS.\nActivalo y luego desliza para abajo para recalibrar.</string>

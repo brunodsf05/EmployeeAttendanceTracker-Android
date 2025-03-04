@@ -10,7 +10,8 @@ public enum ClockAction {
     RECOVER,
     NOTIFY_AUSENCE,
     TOBEIN_WORK,
-    FREEDAY;
+    FREEDAY,
+    ERROR_CONNECTION;
 
     public static ClockAction fromString(String text) {
         if (text == null || text.isEmpty()) {
@@ -75,6 +76,7 @@ public enum ClockAction {
             case NOTIFY_AUSENCE: return R.string.clock_lbl_notify_ausence;
             case TOBEIN_WORK: return R.string.clock_lbl_tobein_work;
             case FREEDAY: return R.string.clock_lbl_freeday;
+            case ERROR_CONNECTION: return R.string.clock_lbl_error_connection;
         }
 
         return R.string.clock_lbl_error;
