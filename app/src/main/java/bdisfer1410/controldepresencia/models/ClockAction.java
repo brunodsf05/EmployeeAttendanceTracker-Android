@@ -11,7 +11,8 @@ public enum ClockAction {
     NOTIFY_AUSENCE,
     TOBEIN_WORK,
     FREEDAY,
-    ERROR_CONNECTION;
+    ERROR_CONNECTION,
+    ERROR_UNKNOWN;
 
     public static ClockAction fromString(String text) {
         if (text == null || text.isEmpty()) {
