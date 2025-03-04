@@ -1,6 +1,6 @@
 <resources>
     <!-- Aplicación -->
-    <string name="app_name">Control De Presencia 2025</string>
+    <string name="app_name">Control De Presencia 2025 - BDISFER1410</string>
 
     <!-- Aplicación: Errores -->
     <string name="app_error_anyservice_connection">No se pudo contactar con el servidor</string>
