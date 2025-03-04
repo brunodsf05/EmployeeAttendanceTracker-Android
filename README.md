@@ -1,6 +1,8 @@
 # ControlDePresencia2025 - Android
 Hecho por Bruno Di Sabatino
 
+![apphero](/apphero.png)
+
 ## Útil
 
 ### Navegar por el código
