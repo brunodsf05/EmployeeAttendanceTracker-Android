@@ -254,14 +254,14 @@ public class ClockActivity extends AppCompatActivity {
 
             @Override
             public void beforeResponse() {
-                // Ya se recibió la respuesta
-                isUpdatingClockAction = false;
-                configureInterface();
+                /* No hay inicialización */
             }
 
             @Override
             public void afterResponse() {
-                /* No hay finalización */
+                // Configurar la interfaz según la respuesta
+                isUpdatingClockAction = false;
+                configureInterface();
             }
 
             @Override
@@ -271,7 +271,6 @@ public class ClockActivity extends AppCompatActivity {
                 latestClockAction = okBody.getAction();
                 startTime = okBody.getStartHour();
                 exitTime = okBody.getExitHour();
-
             }
 
             @Override
@@ -287,6 +286,7 @@ public class ClockActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 Log.e("API", String.format("FailedResponse: %s", getString(R.string.app_error_anyservice_connection)));
+                latestClockAction = ClockAction.ERROR_CONNECTION;
             }
         });
     }
