@@ -19,7 +19,7 @@
 
     <!-- Activity: Fichajes: Views: Feedback -->
     <string name="clock_fdb_error">¡Vaya un error!</string>
-    <string name="clock_lbl_error">Esto es un error de la aplicación que no debería ser visto...</string>
+    <string name="clock_lbl_error">Esto es un error de la aplicación que no debería ser visto…</string>
 
     <string name="clock_fdb_wait">¡Espera, que todavía falta!</string>
     <string name="clock_lbl_wait">Aún no es hora de entrar a trabajar.</string>
