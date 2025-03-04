@@ -438,7 +438,6 @@ public class ClockActivity extends AppCompatActivity {
 
     private void onMenuConfigurationClick() {
         Log.d("CLICK", "Configuración");
-        debugCycleClockAction(); // TODO: Quitarlo debug temporal
     }
 
     private void onMenuLogoutClick() {
