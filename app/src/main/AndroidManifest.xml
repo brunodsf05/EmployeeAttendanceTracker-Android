@@ -17,19 +17,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ControlDePresencia2025Android"
         tools:targetApi="31">
+
         <activity
-            android:name=".view.LoginActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".view.IncidenceActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!--
+
+                <activity
+                    android:name=".view.LoginActivity"
+                    android:windowSoftInputMode="adjustResize"
+                    android:exported="true">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
         </activity>
         <activity
             android:name=".view.ClockActivity"
             android:exported="false"/>
+                    -->
     </application>
 
 </manifest>
