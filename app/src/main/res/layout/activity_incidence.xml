@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="32dp"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    tools:context=".view.IncidenceActivity">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layoutTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="60dp"
+                android:autoSizeTextType="uniform"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/incidence_title"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/incidence_subtitle"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutInput"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="32dp">
+
+            <TextView
+                android:id="@+id/textUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incidence_lbl_datetime"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/incidence_hnt_datetime"
+                android:inputType="datetime" />
+
+            <TextView
+                android:id="@+id/textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="@string/incidence_lbl_description"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/incidence_hnt_description"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/outputError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="?attr/colorError"
+                android:textSize="16sp" />
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:text="@string/login_btn_login"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

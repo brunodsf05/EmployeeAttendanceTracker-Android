@@ -84,4 +84,13 @@
     <!-- Activity: Inicio de sesión: Errores: Servidor -->
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
     <string name="login_error_authservice_incorrectpassword">La contraseña no es válida</string>
+
+    <!-- Activity: Inicio de sesión: Views -->
+    <string name="incidence_title">Incidencia</string>
+    <string name="incidence_subtitle">Escriba su problema</string>
+    <string name="incidence_lbl_datetime">Fecha y hora</string>
+    <string name="incidence_hnt_datetime">¿Cuando ocurrio?</string>
+    <string name="incidence_lbl_description">Descripción</string>
+    <string name="incidence_hnt_description">Escriba su problema</string>
+    <string name="incidence_btn_send">Enviar</string>
 </resources>
