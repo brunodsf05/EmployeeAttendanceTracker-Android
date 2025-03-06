@@ -48,8 +48,19 @@ import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class IncidenceActivity extends AppCompatActivity {
+    //region Variables
+    //region Datos
+    private Tokens tokens;
+    private ClockAction latestClockAction;
+    private Location latestLocation;
+    private LocalTime startTime;
+    private LocalTime exitTime;
+    //endregion
+    //endregion
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Configuración inicial
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_incidence);
@@ -58,5 +69,18 @@ public class IncidenceActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Cargar el token
+        Intent intent = getIntent();
+
+        if (intent == null) {
+            Log.e("TOKEN", "No se recibió ningún token");
+            return;
+        }
+        else {
+            tokens = new Tokens(intent);
+            Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.access.getDebug()));
+            Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.refresh.getDebug()));
+        }
     }
 }
