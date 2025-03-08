@@ -445,6 +445,10 @@ public class ClockActivity extends AppCompatActivity {
 
     private void onMenuIncidenceClick() {
         Log.d("CLICK", "Crear incidencia");
+
+        Intent intent = new Intent(ClockActivity.this, IncidenceActivity.class);
+        tokens.intoIntent(intent);
+        startActivity(intent);
     }
 
     private void onMenuLogoutClick() {
