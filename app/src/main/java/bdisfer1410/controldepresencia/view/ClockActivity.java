@@ -421,9 +421,10 @@ public class ClockActivity extends AppCompatActivity {
         int id = item.getItemId();
         boolean hasCalledFunction = true;
 
-             if (id == R.id.mnu_history) onMenuHistoryClick();
-        else if (id == R.id.mnu_config ) onMenuConfigurationClick();
-        else if (id == R.id.mnu_logout ) onMenuLogoutClick();
+             if (id == R.id.mnu_incidence) onMenuIncidenceClick();
+        else if (id == R.id.mnu_logout   ) onMenuLogoutClick();
+        else if (id == R.id.mnu_history  ) onMenuHistoryClick();
+        else if (id == R.id.mnu_config   ) onMenuConfigurationClick();
         else {
             Log.e("CLICK", "MenuItem sin implementar");
             hasCalledFunction = false;
@@ -440,6 +441,10 @@ public class ClockActivity extends AppCompatActivity {
 
     private void onMenuConfigurationClick() {
         Log.d("CLICK", "Configuración");
+    }
+
+    private void onMenuIncidenceClick() {
+        Log.d("CLICK", "Crear incidencia");
     }
 
     private void onMenuLogoutClick() {
