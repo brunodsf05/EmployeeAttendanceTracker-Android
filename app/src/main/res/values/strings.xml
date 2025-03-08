@@ -91,6 +91,6 @@
     <string name="incidence_lbl_datetime">Fecha y hora</string>
     <string name="incidence_hnt_datetime">¿Cuando ocurrio?</string>
     <string name="incidence_lbl_description">Descripción</string>
-    <string name="incidence_hnt_description">Escriba su problema</string>
+    <string name="incidence_hnt_description">¿Que pasó?</string>
     <string name="incidence_btn_send">Enviar</string>
 </resources>
