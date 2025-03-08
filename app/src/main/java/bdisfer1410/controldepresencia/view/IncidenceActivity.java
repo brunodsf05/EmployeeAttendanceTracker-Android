@@ -120,9 +120,7 @@ public class IncidenceActivity extends AppCompatActivity {
             return;
         }
 
-        // tokens = new Tokens(intent);
-        // TEMP
-        tokens = new Tokens("", "");
+        tokens = new Tokens(intent);
 
         Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.access.getDebug()));
         Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.refresh.getDebug()));
