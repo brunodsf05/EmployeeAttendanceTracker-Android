@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -78,6 +79,8 @@ public class IncidenceActivity extends AppCompatActivity {
         inputDatetime = findViewById(R.id.inputDatetime);
         inputDescription = findViewById(R.id.inputDescription);
         buttonSend = findViewById(R.id.buttonSend);
+        outputError = findViewById(R.id.outputError);
+        progressbar = findViewById(R.id.progressbar);
 
         inputDatetime.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
@@ -103,7 +106,16 @@ public class IncidenceActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        buttonSend.setOnClickListener(v -> Log.d("Vaina", String.valueOf(validateIncidence())));
+        buttonSend.setOnClickListener(v -> {
+            boolean canSendIncidence = validateIncidence();
+
+            if (canSendIncidence) {
+                sendIncidence();
+            }
+            else {
+                Log.e("API", "La incidencia no es válida para enviarse.");
+            }
+        });
     }
 
     /**
@@ -129,4 +141,16 @@ public class IncidenceActivity extends AppCompatActivity {
         return valid;
     }
 
+    /**
+     * Intenta enviar una incidencia.
+     */
+    private void sendIncidence() {
+        // Preparar la entrada
+        String description = inputDescription.getText().toString().trim();
+
+        // Iniciar animación de carga
+        buttonSend.setEnabled(false);
+        outputError.setText("");
+        progressbar.setVisibility(View.VISIBLE);
+    }
 }
