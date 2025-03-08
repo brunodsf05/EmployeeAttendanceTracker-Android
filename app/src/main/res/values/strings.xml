@@ -93,4 +93,8 @@
     <string name="incidence_lbl_description">Descripción</string>
     <string name="incidence_hnt_description">¿Que pasó?</string>
     <string name="incidence_btn_send">Enviar</string>
+
+    <!-- Activity: Inicio de sesión: Views -->
+    <string name="incidence_error_input_datetime">Debes elegir fecha y hora</string>
+    <string name="incidence_error_input_description">Debes escribir tu problema</string>
 </resources>
