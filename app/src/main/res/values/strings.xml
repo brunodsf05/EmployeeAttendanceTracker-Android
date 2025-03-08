@@ -85,7 +85,7 @@
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
     <string name="login_error_authservice_incorrectpassword">La contraseña no es válida</string>
 
-    <!-- Activity: Inicio de sesión: Views -->
+    <!-- Activity: Incidencias: Views -->
     <string name="incidence_title">Incidencia</string>
     <string name="incidence_subtitle">Escriba su problema</string>
     <string name="incidence_lbl_datetime">Fecha y hora</string>
@@ -94,8 +94,10 @@
     <string name="incidence_hnt_description">¿Que pasó?</string>
     <string name="incidence_btn_send">Enviar</string>
 
-    <!-- Activity: Inicio de sesión: Views -->
+    <!-- Activity: Incidencias: Errores -->
     <string name="incidence_error_token">Tu sesión actual no es válida.\nSalga de esta página y vuelva a entrar.</string>
     <string name="incidence_error_input_datetime">Debes elegir fecha y hora</string>
     <string name="incidence_error_input_description">Debes escribir tu problema</string>
+    <string name="incidence_error_service_usernotfound">Ese usuario no existe</string>
+    <string name="incidence_error_service_badrequest">Tu incidencia no se pudo procesar</string>
 </resources>
