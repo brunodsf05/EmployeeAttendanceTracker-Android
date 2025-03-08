@@ -7,6 +7,7 @@
     <string name="app_error_anyservice_response">La respuesta del servidor es inválida</string>
     <string name="app_error_anyservice_unknownkey">El servidor devolvió un error desconocido</string>
     <string name="app_error_anyservice_accesstokeninvalid">La sesión ha caducado</string>
+    <string name="app_error_accesstoken_invalid">La sesión ha caducado</string>
 
     <!-- Activity: Fichajes: Views -->
     <string name="clock_title">Fichar</string>
