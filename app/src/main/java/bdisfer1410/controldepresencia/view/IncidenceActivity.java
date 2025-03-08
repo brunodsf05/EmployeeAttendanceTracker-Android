@@ -1,63 +1,39 @@
 package bdisfer1410.controldepresencia.view;
 
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 
 import bdisfer1410.controldepresencia.R;
-import bdisfer1410.controldepresencia.api.ApiClient;
-import bdisfer1410.controldepresencia.api.ApiService;
-import bdisfer1410.controldepresencia.api.ProCallback;
-import bdisfer1410.controldepresencia.api.clock.ClockResponse;
-import bdisfer1410.controldepresencia.api.clock.action.ClockActionErrorResponse;
-import bdisfer1410.controldepresencia.api.clock.send.ClockSendErrorResponse;
-import bdisfer1410.controldepresencia.api.clock.send.ClockSendRequest;
-import bdisfer1410.controldepresencia.models.ClockAction;
 import bdisfer1410.controldepresencia.models.Tokens;
-import bdisfer1410.controldepresencia.tools.Hour;
-import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class IncidenceActivity extends AppCompatActivity {
     //region Variables
+    //region Configuración
+    @SuppressLint("SimpleDateFormat")
+    private static final SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    //endregion
     //region Views
     private EditText inputDatetime, inputDescription;
     private TextView outputError;
@@ -66,7 +42,7 @@ public class IncidenceActivity extends AppCompatActivity {
     //endregion
     //region Datos
     private Tokens tokens;
-    private ClockAction latestClockAction;
+    private Date datetime;
     private Location latestLocation;
     private LocalTime startTime;
     private LocalTime exitTime;
@@ -101,6 +77,7 @@ public class IncidenceActivity extends AppCompatActivity {
         // Configurar views
         inputDatetime = findViewById(R.id.inputDatetime);
         inputDescription = findViewById(R.id.inputDescription);
+        buttonLogin = findViewById(R.id.buttonLogin);
 
         inputDatetime.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
@@ -117,36 +94,39 @@ public class IncidenceActivity extends AppCompatActivity {
                         TimePickerDialog timePickerDialog = new TimePickerDialog(IncidenceActivity.this,
                                 (view1, hourOfDay, minute1) -> {
                                     // Mostrar fecha y hora en el formato deseado
-                                    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                                     calendar.set(year1, month1, dayOfMonth, hourOfDay, minute1);
-                                    inputDatetime.setText(dateTimeFormat.format(calendar.getTime()));
+                                    datetime = calendar.getTime();
+                                    inputDatetime.setText(DATETIME_FORMAT.format(datetime));
                                 }, hour, minute, true);
                         timePickerDialog.show();
                     }, year, month, day);
             datePickerDialog.show();
         });
 
+        buttonLogin.setOnClickListener(v -> Log.d("Vaina", String.valueOf(validateIncidence())));
     }
 
     /**
      * Valida los datos a enviar de la incidencia.
      *
-     * @return True si todo es válido False si no.
-    private boolean validateCredentials() {
+     * @return True si todo es válido False si no. */
+    private boolean validateIncidence() {
         boolean valid = true;
 
-        if (!inputDatetime.get()) {
-            inputUsername.setError(getString(R.string.login_error_input_username));
+        inputDatetime.setError(null);
+        inputDescription.setError(null);
+
+        if (datetime == null) {
+            inputDatetime.setError(getString(R.string.incidence_error_input_datetime));
             valid = false;
         }
 
-        if (!credentials.isPasswordValid()) {
-            inputPassword.setError(getString(R.string.login_error_input_password));
+        if (inputDescription.getText().toString().isEmpty()) {
+            inputDescription.setError(getString(R.string.incidence_error_input_description));
             valid = false;
         }
 
         return valid;
     }
-     */
 
 }
