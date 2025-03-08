@@ -4,6 +4,8 @@ import bdisfer1410.controldepresencia.api.clock.ClockResponse;
 import bdisfer1410.controldepresencia.api.auth.AuthRequest;
 import bdisfer1410.controldepresencia.api.auth.AuthResponse;
 import bdisfer1410.controldepresencia.api.clock.send.ClockSendRequest;
+import bdisfer1410.controldepresencia.api.incidence.IncidenceRequest;
+import bdisfer1410.controldepresencia.api.incidence.IncidenceResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -17,4 +19,6 @@ public interface ApiService {
     Call<ClockResponse> getClockAction(@Header("Authorization") String token);
     @POST("/fichar")
     Call<ClockResponse> sendClockRequest(@Header("Authorization") String token, @Body ClockSendRequest clockSendRequest);
+    @POST("/incidencia")
+    Call<IncidenceResponse> sendIncidence(@Header("Authorization") String token, @Body IncidenceRequest incidenceRequest);
 }
