@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,18 +14,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
 import bdisfer1410.controldepresencia.R;
+import bdisfer1410.controldepresencia.api.ApiClient;
+import bdisfer1410.controldepresencia.api.ApiService;
+import bdisfer1410.controldepresencia.api.ProCallback;
+import bdisfer1410.controldepresencia.api.incidence.IncidenceErrorResponse;
+import bdisfer1410.controldepresencia.api.incidence.IncidenceRequest;
+import bdisfer1410.controldepresencia.api.incidence.IncidenceResponse;
 import bdisfer1410.controldepresencia.models.Tokens;
+import bdisfer1410.controldepresencia.tools.Messages;
 
 
 public class IncidenceActivity extends AppCompatActivity {
@@ -43,10 +49,8 @@ public class IncidenceActivity extends AppCompatActivity {
     //endregion
     //region Datos
     private Tokens tokens;
+    private ApiService service;
     private Date datetime;
-    private Location latestLocation;
-    private LocalTime startTime;
-    private LocalTime exitTime;
     //endregion
     //endregion
 
@@ -62,12 +66,18 @@ public class IncidenceActivity extends AppCompatActivity {
             return insets;
         });
 
+        service = ApiClient.retrofit.create(ApiService.class);
+
         // Cargar el token
         Intent intent = getIntent();
 
         if (intent == null) {
+            //TEMP
+            tokens = new Tokens("", "");
+            /*
             Log.e("TOKEN", "No se recibió ningún token");
             return;
+             */
         }
         else {
             tokens = new Tokens(intent);
@@ -152,5 +162,56 @@ public class IncidenceActivity extends AppCompatActivity {
         buttonSend.setEnabled(false);
         outputError.setText("");
         progressbar.setVisibility(View.VISIBLE);
+
+        // Cuando el servidor responda...
+        String header = tokens.access.getHeader();
+        IncidenceRequest request = new IncidenceRequest(datetime, description);
+        service.sendIncidence(header, request).enqueue(new ProCallback<IncidenceResponse, IncidenceErrorResponse>() {
+            @Override
+            protected Class<IncidenceErrorResponse> getErrorClass() {
+                return IncidenceErrorResponse.class;
+            }
+
+            @Override
+            public void beforeResponse() {
+                /* No hay preparación */
+            }
+
+            @Override
+            public void afterResponse() {
+                progressbar.setVisibility(View.GONE);
+                buttonSend.setEnabled(true);
+            }
+
+            @Override
+            public void onOkResponse(@NonNull IncidenceResponse okBody) {
+                Log.d("API", "Se envió con éxito");
+                finish();
+            }
+
+            @Override
+            public void onErrorResponse(@NonNull IncidenceErrorResponse errorBody) {
+                Log.e("API", String.format("Error: %s", errorBody.getShortError()));
+
+                outputError.setText(
+                        Messages.fromKey(
+                                IncidenceActivity.this,
+                                errorBody.getError(),
+                                R.string.app_error_anyservice_unknownkey
+                        )
+                );
+            }
+
+            @Override
+            public void onNullResponse() {
+                outputError.setText(R.string.app_error_anyservice_response);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("API", "Error de conexión con el servidor", t);
+                outputError.setText(R.string.app_error_anyservice_connection);
+            }
+        });
     }
 }
