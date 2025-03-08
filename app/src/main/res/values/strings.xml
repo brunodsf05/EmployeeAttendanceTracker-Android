@@ -95,6 +95,7 @@
     <string name="incidence_btn_send">Enviar</string>
 
     <!-- Activity: Inicio de sesión: Views -->
+    <string name="incidence_error_token">Tu sesión actual no es válida.\nSalga de esta página y vuelva a entrar.</string>
     <string name="incidence_error_input_datetime">Debes elegir fecha y hora</string>
     <string name="incidence_error_input_description">Debes escribir tu problema</string>
 </resources>

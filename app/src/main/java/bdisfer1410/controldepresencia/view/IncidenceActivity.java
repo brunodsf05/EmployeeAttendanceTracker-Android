@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.api.ApiClient;
@@ -68,23 +69,6 @@ public class IncidenceActivity extends AppCompatActivity {
 
         service = ApiClient.retrofit.create(ApiService.class);
 
-        // Cargar el token
-        Intent intent = getIntent();
-
-        if (intent == null) {
-            //TEMP
-            tokens = new Tokens("", "");
-            /*
-            Log.e("TOKEN", "No se recibió ningún token");
-            return;
-             */
-        }
-        else {
-            tokens = new Tokens(intent);
-            Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.access.getDebug()));
-            Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.refresh.getDebug()));
-        }
-
         // Configurar views
         inputDatetime = findViewById(R.id.inputDatetime);
         inputDescription = findViewById(R.id.inputDescription);
@@ -126,6 +110,27 @@ public class IncidenceActivity extends AppCompatActivity {
                 Log.e("API", "La incidencia no es válida para enviarse.");
             }
         });
+
+        // Cargar el token
+        Intent intent = getIntent();
+
+        if (intent == null) {
+            //TEMP
+            Log.e("TOKEN", "No se recibió ningún token");
+            return;
+        }
+
+        // tokens = new Tokens(intent);
+        // TEMP
+        tokens = new Tokens("", "");
+
+        Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.access.getDebug()));
+        Log.d("TOKEN", String.format("El Intent recibio el de %s", tokens.refresh.getDebug()));
+
+        if (!tokens.access.isValid()) {
+            buttonSend.setEnabled(false);
+            outputError.setText(R.string.incidence_error_token);
+        }
     }
 
     /**
