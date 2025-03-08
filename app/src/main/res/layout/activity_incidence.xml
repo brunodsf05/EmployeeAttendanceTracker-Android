@@ -120,11 +120,11 @@
                 android:visibility="gone" />
 
             <Button
-                android:id="@+id/buttonLogin"
+                android:id="@+id/buttonSend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
-                android:text="@string/login_btn_login"
+                android:text="@string/incidence_btn_send"
                 android:textSize="16sp"
                 tools:ignore="VisualLintButtonSize" />
 

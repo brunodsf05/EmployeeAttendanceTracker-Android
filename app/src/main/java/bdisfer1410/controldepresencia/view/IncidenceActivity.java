@@ -38,7 +38,7 @@ public class IncidenceActivity extends AppCompatActivity {
     private EditText inputDatetime, inputDescription;
     private TextView outputError;
     private ProgressBar progressbar;
-    private Button buttonLogin;
+    private Button buttonSend;
     //endregion
     //region Datos
     private Tokens tokens;
@@ -77,7 +77,7 @@ public class IncidenceActivity extends AppCompatActivity {
         // Configurar views
         inputDatetime = findViewById(R.id.inputDatetime);
         inputDescription = findViewById(R.id.inputDescription);
-        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonSend = findViewById(R.id.buttonSend);
 
         inputDatetime.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
@@ -103,7 +103,7 @@ public class IncidenceActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        buttonLogin.setOnClickListener(v -> Log.d("Vaina", String.valueOf(validateIncidence())));
+        buttonSend.setOnClickListener(v -> Log.d("Vaina", String.valueOf(validateIncidence())));
     }
 
     /**
