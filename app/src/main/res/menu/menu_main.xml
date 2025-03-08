@@ -20,6 +20,14 @@
         android:visible="false"
         app:showAsAction="never" />
 
+
+    <item
+        android:id="@+id/mnu_incidence"
+        android:icon="@drawable/ic_incidence"
+        app:iconTint="?attr/colorOnSurface"
+        android:title="@string/clock_mnu_incidence"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/mnu_logout"
         android:icon="@drawable/ic_logout"

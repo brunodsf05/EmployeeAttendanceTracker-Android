@@ -13,6 +13,7 @@
     <string name="clock_title">Fichar</string>
     <string name="clock_mnu_history">Ver mis entradas y salidas</string>
     <string name="clock_mnu_settings">Configuración de usuario</string>
+    <string name="clock_mnu_incidence">Crear incidencia</string>
     <string name="clock_mnu_logout">Cerrar sesión</string>
     <string name="clock_btn_clock_in">Entrar</string>
     <string name="clock_btn_clock_out">Salir</string>
