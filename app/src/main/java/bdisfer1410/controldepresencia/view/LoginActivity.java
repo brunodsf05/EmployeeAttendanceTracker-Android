@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
-        authService = ApiClient.retrofit.create(ApiService.class);
+        authService = ApiClient.getRetrofit().create(ApiService.class);
 
         buttonLogin.setOnClickListener(v -> {
             loadCredentialsFromFormulary();

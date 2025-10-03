@@ -91,7 +91,7 @@ public class ClockActivity extends AppCompatActivity {
 
         findViews();
         configureViews();
-        service = ApiClient.retrofit.create(ApiService.class);
+        service = ApiClient.getRetrofit().create(ApiService.class);
 
         // Manejar la geolocalización
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);

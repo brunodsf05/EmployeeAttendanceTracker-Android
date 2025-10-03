@@ -23,7 +23,6 @@ import androidx.core.view.WindowInsetsCompat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import bdisfer1410.controldepresencia.R;
 import bdisfer1410.controldepresencia.api.ApiClient;
@@ -67,7 +66,7 @@ public class IncidenceActivity extends AppCompatActivity {
             return insets;
         });
 
-        service = ApiClient.retrofit.create(ApiService.class);
+        service = ApiClient.getRetrofit().create(ApiService.class);
 
         // Configurar views
         inputDatetime = findViewById(R.id.inputDatetime);
