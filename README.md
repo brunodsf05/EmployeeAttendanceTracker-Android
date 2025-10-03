@@ -2,6 +2,8 @@
 
 This project is a service for managing employee attendance.
 
+![Application](/apphero.png)
+
 You are currently looking at the **android** client.
 
 [EmployeeAttendanceTracker-Backend](https://github.com/brunodsf05/EmployeeAttendanceTracker-Backend)
