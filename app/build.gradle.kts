@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "bdisfer1410.controldepresencia"
+    namespace = "brunodsf05.employee.attendance.tracker"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "bdisfer1410.controldepresencia"
+        applicationId = "brunodsf05.employee.attendance.tracker"
         minSdk = 29
         targetSdk = 35
         versionCode = 1
