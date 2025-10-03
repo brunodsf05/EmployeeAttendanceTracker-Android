@@ -74,18 +74,22 @@
     <string name="login_hnt_username">Escriba su usuario</string>
     <string name="login_lbl_password">Contraseña</string>
     <string name="login_hnt_password">Escriba su contraseña</string>
+    <string name="login_lbl_server">Servidor</string>
+    <string name="login_hnt_server">https://yourcompany.server</string>
     <string name="login_btn_login">Entrar</string>
     <string name="login_btn_remember">Recordar credenciales del usuario</string>
 
     <!-- Activity: Inicio de sesión: Errores: Locales -->
     <string name="login_error_input_username">Debes escribir un nombre de usuario</string>
     <string name="login_error_input_password">Debes escribir una contraseña</string>
+    <string name="login_error_input_server">La dirección del servidor está mal escrita</string>
     <string name="login_error_input_credentials">Las credenciales no son válidas</string>
     <string name="login_error_load_credentials">No se pudieron cargar las credenciales</string>
 
     <!-- Activity: Inicio de sesión: Errores: Servidor -->
     <string name="login_error_authservice_usernotfound">Ese usuario no existe</string>
     <string name="login_error_authservice_incorrectpassword">La contraseña no es válida</string>
+    <string name="login_error_invalid_server">La dirección del servidor es inválida</string>
 
     <!-- Activity: Incidencias: Views -->
     <string name="incidence_title">Incidencia</string>
