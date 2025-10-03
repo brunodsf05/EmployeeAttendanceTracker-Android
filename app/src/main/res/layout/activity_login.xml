@@ -87,6 +87,23 @@
                 android:hint="@string/login_hnt_password"
                 android:inputType="textPassword"
                 tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/textServer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="@string/login_lbl_server"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/inputServer"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:autofillHints="password"
+                android:hint="@string/login_hnt_server"
+                android:inputType="text"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
 
         <LinearLayout

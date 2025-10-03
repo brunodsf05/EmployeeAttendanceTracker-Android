@@ -1,5 +1,7 @@
 package bdisfer1410.controldepresencia.api;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -16,13 +18,13 @@ public class ApiClient {
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'") // ISO 8601
             .create();
 
-    public static String url = "";
+    public static String url = "http:192.168.1.39:5000";
 
     public static Retrofit getRetrofit() {
         boolean urlChanged = !url.equals(lastUrl);
 
-        if (urlChanged) {
-            lastUrl = url;
+        if (urlChanged || retrofit == null) {
+            if (retrofit != null) lastUrl = url;
             retrofit = new Retrofit.Builder()
                     .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create(myGson))
@@ -33,7 +35,7 @@ public class ApiClient {
     }
 
     //region Singleton manager
-    private static String lastUrl = null;
+    private static String lastUrl = "";
     private static Retrofit retrofit;
     //endregion
 }

@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     //region Views
     private ScrollView scrollview;
     private LinearLayout layoutInput;
-    private EditText inputUsername, inputPassword;
+    private EditText inputUsername, inputPassword, inputServer;
     private TextView outputError;
     private ProgressBar progressbar;
     private Button buttonLogin;
@@ -71,14 +71,13 @@ public class LoginActivity extends AppCompatActivity {
         layoutInput = findViewById(R.id.layoutInput);
         inputUsername = findViewById(R.id.inputUser);
         inputPassword = findViewById(R.id.inputPassword);
+        inputServer = findViewById(R.id.inputServer);
         outputError = findViewById(R.id.outputError);
         progressbar = findViewById(R.id.progressbar);
         buttonLogin = findViewById(R.id.buttonLogin);
         checkboxRemember = findViewById(R.id.checkboxRemember);
 
         // Configurar acciones
-        authService = ApiClient.getRetrofit().create(ApiService.class);
-
         buttonLogin.setOnClickListener(v -> {
             loadCredentialsFromFormulary();
 
@@ -98,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
         inputUsername.setOnFocusChangeListener(onInputFocusScrollToIt);
         inputPassword.setOnFocusChangeListener(onInputFocusScrollToIt);
+        inputServer.setOnFocusChangeListener(onInputFocusScrollToIt);
 
         // Cargar datos
         Intent intent = getIntent();
@@ -126,6 +126,17 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!isCredentialsValid) {
             outputError.setText(R.string.login_error_input_credentials);
+            return;
+        }
+
+        // Create api client
+        try {
+            ApiClient.url = credentials == null ? "" : credentials.getServer();
+            authService = ApiClient.getRetrofit().create(ApiService.class);
+        }
+        catch (Exception e) {
+            Log.e("API", "Couldn't instantiate retrofit possibly due to invalid url", e);
+            outputError.setText(R.string.login_error_invalid_server);
             return;
         }
 
@@ -199,8 +210,9 @@ public class LoginActivity extends AppCompatActivity {
     private void loadCredentialsFromFormulary() {
         String name = inputUsername.getText().toString();
         String password = inputPassword.getText().toString();
+        String server = inputServer.getText().toString();
 
-        credentials = new AuthRequest(name, password);
+        credentials = new AuthRequest(name, password, server);
     }
 
     /**
@@ -209,15 +221,17 @@ public class LoginActivity extends AppCompatActivity {
     private void loadCredentialsFromStorage() {
         String name = sharedPreferences.getString("username", null);
         String password = sharedPreferences.getString("password", null);
+        String server = sharedPreferences.getString("server", null);
 
-        if (name == null || password == null) {
+        if (name == null || password == null || server == null) {
             outputError.setText(R.string.login_error_load_credentials);
         }
 
         inputUsername.setText(name);
         inputPassword.setText(password);
+        inputServer.setText(server);
 
-        credentials = new AuthRequest(name, password);
+        credentials = new AuthRequest(name, password, server);
     }
 
     /**
@@ -239,6 +253,11 @@ public class LoginActivity extends AppCompatActivity {
             valid = false;
         }
 
+        if (!credentials.isServerValid()) {
+            inputServer.setError(getString(R.string.login_error_input_server));
+            valid = false;
+        }
+
         return valid;
     }
 
@@ -251,6 +270,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putBoolean("remember", true);
         editor.putString("username", credentials.getUsername());
         editor.putString("password", credentials.getPassword());
+        editor.putString("server", credentials.getServer());
 
         editor.apply();
     }
