@@ -10,6 +10,11 @@ You are currently looking at the **android** client.
 
 
 
+## 👁️ Showcase
+[Watch the video!](https://youtu.be/EcF_eAEUjeo)
+
+
+
 ## ✨ Features
 -   🔐 **User Authentication**: Secure login for administrators and employees.
 -   🕒 **Clock In/Out**: Employees can register entry and exit times only if they are physically at work.
